@@ -22,8 +22,9 @@ export class StrainComponent implements OnInit {
     this.strain = null;
     this.sub = this.route.params.subscribe(params => {
       this.name = params['strain_name'];
-      console.log(this.name);
-      this.strainService.findStrainByName(this.name).then((strain) => {this.strain = strain;});
+      this.strainService.findStrainByName(this.name).then((strain) => {
+        this.strain = strain;
+      });
     });
   }
   

@@ -2,7 +2,8 @@
        placeholder="search"
        id="searchFld"
        class="form-control"
-       [(ngModel)]="query"/>
+       [(ngModel)]="query"
+       (keyup.enter)="search(query)"/>
 <button id="searchBtn" 
         class="btn btn-lg btn-primary btn-block"
         (click)="search(query)">Search</button>
