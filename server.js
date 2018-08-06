@@ -62,7 +62,15 @@ app.use(cors({
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+var session = require('express-session')
+app.use(session({
+  resave: false,
+  saveUninitialized: true,
+  secret: 'any string'
+}));
+
 require('./nodesrc/service/strain.service')(app);
+require('./nodesrc/service/user.service')(app);
 
 // Serve only the static files form the dist directory
 app.use(express.static(__dirname + '/dist/webdev-team-project-angular'));
