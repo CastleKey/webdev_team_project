@@ -28,6 +28,63 @@ module.exports = app => {
     });
   });
   
+  app.get("/api/strain/search/:sname", function (req, res) {
+    strainRepo.searchStrainsByName(req.params['sname']).then((strain) => {
+      if (strain == null || strain.length == 0) {
+        makeReq(url + "/strains/search/name/" + req.params['sname'], (strains) => {
+          var firstTime = {first: true};
+          if (strains.length == 0) {
+            res.sendStatus(400);
+            return;
+          }
+          res.json(strains.map((str) => {
+            return str.name;
+          }));
+          strains.forEach((str) => {
+            strainRepo.findStrain(str.name).then((err, dbStr) => {
+              if (err || dbStr == null) {
+                makeReq(url + "/strains/data/effects/" + str.id, (eff) => { 
+                  return ((eff, firstTime) => {
+                    makeReq(url + "/strains/data/flavors/" + str.id, (fla) => { 
+                      return ((fla, firstTime) => {
+                        var first = false;
+                        if (firstTime.first == true) {
+                          firstTime.first = false;
+                          first = true;
+                        }
+                        var obj = {};
+                        obj._id = str.name;
+                        obj.eb_id = str.id;
+                        obj.race = str.race.toUpperCase();
+                        obj.desc = str.desc;
+                        obj.effects = eff.positive.concat(
+                                      eff.negative.concat(
+                                      eff.medical)).map((eff) => {
+                          return eff.toString();
+                        });
+                        obj.flavors = fla.map((fla) => {
+                          return fla.toString();
+                        });
+                        strainRepo.upsertStrain(obj).then((dbObj) => {
+                          //nothing needed to be done
+                        });
+                      })(fla, firstTime)
+                    });
+                  })(eff, firstTime)
+                });
+              }
+            });
+          });
+          //res.json(strain);
+        });
+        return;
+      }
+      res.json(strain.map((strain) => {
+        return strain._id;
+      }));
+    });
+  });
+  
   app.get("/api/strain/:sname", function (req, res) {
     strainRepo.findStrain().then((err, strain) => {
       if (err) {
