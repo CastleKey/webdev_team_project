@@ -1,0 +1,15 @@
+<input type="text"
+       placeholder="search"
+       id="searchFld"
+       class="form-control"
+       [(ngModel)]="query"/>
+<button id="searchBtn" 
+        class="btn btn-lg btn-primary btn-block"
+        (click)="search(query)">Search</button>
+<ul>
+  <li *ngFor="let res of result"
+      (click)="select(res)">
+    {{res}}
+  </li>
+</ul>
+<p *ngIf="selectedStrain">{{JSON.stringify(selectedStrain)}}</p>
