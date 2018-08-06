@@ -38,35 +38,44 @@ module.exports = app => {
       if (strain == null) {
         makeReq(url + "/strains/search/name/" + req.params['sname'], (strains) => {
           var firstTime = {first: true};
+          if (strains.length == 0) {
+            res.sendStatus(400);
+            return;
+          }
           strains.forEach((str) => {
-            makeReq(url + "/strains/data/effects/" + str.id, (eff) => { 
-              return ((eff, firstTime) => {
-                makeReq(url + "/strains/data/flavors/" + str.id, (fla) => { 
-                  return ((fla, firstTime) => {
-                    var first = false;
-                    if (firstTime.first == true) {
-                      firstTime.first = false;
-                      first = true;
-                    }
-                    var obj = {};
-                    obj._id = str.name;
-                    obj.eb_id = str.id;
-                    obj.race = str.race.toUpperCase();
-                    obj.desc = str.desc;
-                    obj.effects = eff.positive.concat(eff.negative.concat(eff.medical)).map((eff) => {
-                      return eff.toString();
+            strainRepo.findStrain(str.name).then((err, dbStr) => {
+              if (err || dbStr == null) {
+                makeReq(url + "/strains/data/effects/" + str.id, (eff) => { 
+                  return ((eff, firstTime) => {
+                    makeReq(url + "/strains/data/flavors/" + str.id, (fla) => { 
+                      return ((fla, firstTime) => {
+                        var first = false;
+                        if (firstTime.first == true) {
+                          firstTime.first = false;
+                          first = true;
+                        }
+                        var obj = {};
+                        obj._id = str.name;
+                        obj.eb_id = str.id;
+                        obj.race = str.race.toUpperCase();
+                        obj.desc = str.desc;
+                        obj.effects = eff.positive.concat(
+                                      eff.negative.concat(
+                                      eff.medical)).map((eff) => {
+                          return eff.toString();
+                        });
+                        obj.flavors = fla.map((fla) => {
+                          return fla.toString();
+                        });
+                        strainRepo.upsertStrain(obj);
+                        if (first) {
+                          res.json(obj);
+                        }
+                      })(fla, firstTime)
                     });
-                    obj.flavors = fla.map((fla) => {
-                      return fla.toString();
-                    });
-                    console.log(obj);
-                    strainRepo.upsertStrain(obj);
-                    if (first) {
-                      res.json(obj);
-                    }
-                  })(fla, firstTime)
+                  })(eff, firstTime)
                 });
-              })(eff, firstTime)
+              }
             });
           });
           //res.json(strain);
