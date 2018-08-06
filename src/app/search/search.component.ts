@@ -25,8 +25,7 @@ export class SearchComponent implements OnInit {
   
   select(name) {
     this.strainService.findStrainByName(name).then((strain) => {
-      this.selectedStrain = strain;
+      this.selectedStrain = JSON.stringify(strain);
     });
   }
-
 }
