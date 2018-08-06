@@ -59,6 +59,18 @@ export class UserService {
       body: JSON.stringify(user)
     }).then(response => response.json());
   }
+  
+  updatePassword(password) {
+    return fetch(this.url + '/api/user/updatePassword', {
+      method: 'PUT',
+      credentials: 'include',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify({password:password})
+    }).then(response => response.json());
+  }
+  
   /**
   deleteUser() {
     return fetch(this.url + '/api/profile', {

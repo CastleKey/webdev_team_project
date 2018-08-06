@@ -10,6 +10,7 @@ import {UserService} from "../services/user.service";
 export class ProfileComponent implements OnInit {
 
   user = {username: "", name:"", role:"REGULAR", email:null};
+  newPass = "";
   err;
   
   constructor(private router: Router,
@@ -23,7 +24,19 @@ export class ProfileComponent implements OnInit {
 
   update() {
     this.userService.updateUser(this.user)
-        .then(u => window.alert("Updated"))
+        .then(u => {
+          this.userService.update(u);
+          window.alert("Updated");
+        })
+        .catch(e => this.err = true);
+  }
+
+  updatePassword() {
+    this.userService.updatePassword(this.newPass)
+        .then(u => {
+          this.userService.update(u);
+          window.alert("Updated");
+        })
         .catch(e => this.err = true);
   }
 

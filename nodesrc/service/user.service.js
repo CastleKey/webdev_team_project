@@ -94,8 +94,8 @@ module.exports = (app) => {
     }
     var user = req.body;
     userRepo.updateUser(req.session["user"]._id, user)
-        .then((err, dbUser) => {
-          if (err || dbUser === null) {
+        .then((dbUser) => {
+          if (dbUser === null) {
             res.sendStatus(400);
             return;
           }
@@ -104,6 +104,26 @@ module.exports = (app) => {
         });
   });
 
+  app.put("/api/user/updatePassword", function (req, res) {
+    if (req.session["user"] === null || req.session["user"] === undefined) {
+      res.sendStatus(400);
+      return;
+    }
+    var pass = req.body;
+    userRepo.updateUserPassword(req.session["user"]._id, 
+                                crypto
+                                    .createHash('md5')
+                                    .update(commonSalt + pass.password)
+                                    .digest('hex')).then((dbUser) => {
+      if (dbUser === null) {
+        res.sendStatus(400);
+        return;
+      }
+      req.session["user"] = dbUser;
+      res.json(dbUser);
+    });
+  });
+  
   //fetch("http://localhost:3200/api/profile", {method:'DELETE'});
   //app.delete("/api/user/profile", function (req, res) {
     // Not implemented

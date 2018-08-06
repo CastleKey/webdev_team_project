@@ -20,15 +20,16 @@ upsertUser = (user) => {
   return userModel.findByIdAndUpdate(user._id, user, {upsert:true,new:true}).exec();
 }
 
-updateUser = (user) => {
-  return userModel.findByIdAndUpdate(user._id, 
-                                     {$set: {username: user.username, 
-                                             email: user.email}}, 
+updateUser = (id, user) => {
+  return userModel.findByIdAndUpdate(id, 
+                                     {$set: {email: user.email}}, 
                                      {new:true}).exec();
 }
 
-updateUserPassword = (user) => {
-  return 
+updateUserPassword = (id, password) => {
+  return userModel.findByIdAndUpdate(id, 
+                                     {$set: {password: password}}, 
+                                     {new:true}).exec();
 }
 
 saveUsers = (users) => {
@@ -55,6 +56,7 @@ module.exports = {
   saveUsers,
   upsertUser,
   updateUser,
+  updateUserPassword,
   upsertUsers,
   searchUsersByName
 }

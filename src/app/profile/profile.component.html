@@ -25,12 +25,19 @@
         <label class="control-label" for="passwordFld">
             Password
         </label>
-        <div class="">
+        <div class="input-group">
           <input type="password"
                  placeholder="password"
                  id="passwordFld"
                  class="form-control"
-                 [(ngModel)]="user.password"/>
+                 [(ngModel)]="newPass" />
+          <span class="input-group-btn">
+            <button id="updatePassBtn" 
+                    class="btn btn-danger ml-2"
+                    (click)="updatePassword()">
+                Update
+            </button>
+          </span>
         </div>
     </div>
 
