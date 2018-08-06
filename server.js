@@ -54,7 +54,7 @@ mongoose.connect(process.env.MONGODB_URI
 var app = express()
 
 app.use(cors({
-  "origin": "*",
+  "origin": ["http://localhost:4200"],
   "methods": "GET, POST, PUT, DELETE, OPTIONS",
   "optionsSuccessStatus": 200,
   "credentials": true

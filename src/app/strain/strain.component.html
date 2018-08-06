@@ -1,0 +1,28 @@
+<div *ngIf="strain">
+  <h1>{{strain._id}}</h1>
+  <small>{{strain.race}}</small>
+  <p *ngIf="strain.desc">{{strain.desc}}</p>
+  <p *ngIf="!strain.desc">No description avaliable yet. Sorry</p>
+  <div class="row">
+    <div class="col">
+      <h4>Flavors</h4>
+      <p *ngIf="strain.flavors == 0">Not known.</p>
+      <ul class="list-group">
+        <li class="list-group-item"
+            *ngFor="let fla of strain.flavors">
+          {{fla}}
+        </li>
+      </ul>
+    </div>
+    <div class="col">
+      <h4>Effects</h4>
+      <p *ngIf="strain.effects == 0">Not known.</p>
+      <ul class="list-group">
+        <li class="list-group-item"
+            *ngFor="let eff of strain.effects">
+          {{eff}}
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
