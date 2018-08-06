@@ -1,0 +1,79 @@
+<div class="container" id="wbdv-page">
+	<div class="text-center mb-4">
+    	<h1>Profile</h1>
+    </div>
+  <div class="alert alert-warning" id="wbdv-error" *ngIf="err">
+  	<strong>Warning!</strong> Error updating profile. Try 
+  	<a routerLink="/login">loggining</a> in again?
+  </div>
+	<div class="form-horizontal">
+    <div class="form-group">
+        <label class="control-label" for="usernameFld">
+            Username
+        </label>
+        <div class="">
+          <input type="text"
+                 placeholder="username"
+                 id="usernameFld"
+                 class="form-control"
+                 [(ngModel)]="user.username"
+                 readonly />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label" for="passwordFld">
+            Password
+        </label>
+        <div class="">
+          <input type="password"
+                 placeholder="password"
+                 id="passwordFld"
+                 class="form-control"
+                 [(ngModel)]="user.password"/>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label" for="emailFld">
+            Email
+        </label>
+        <div class="">
+          <input type="text"
+                 placeholder="Email"
+                 id="emailFld"
+                 class="form-control"
+                 [(ngModel)]="user.email"/>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label" for="roleFld">
+            Role
+        </label>
+        <div class="">
+          <select id="roleFld" 
+                  class="form-control" 
+                  [(ngModel)]="user.role" 
+                  disabled >
+      			<option value="REGULAR">User</option>
+      			<option value="STORE">Store</option>
+      			<option value="CURATOR">Curator</option>
+      			<option value="ADMIN">Admin</option>
+  			</select>
+			</div>
+    </div>
+    <div class="">
+      <button id="updateBtn" 
+              class="btn btn-lg btn-danger btn-block"
+              (click)="update()">
+          Update
+      </button>
+      <button id="logoutBtn" 
+              class="btn btn-lg btn-warning btn-block"
+              (click)="logout()">
+          Logout
+      </button>
+    </div>
+  </div>
+</div>
