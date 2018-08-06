@@ -15,7 +15,7 @@ saveStrain = (strain) => {
 }
 
 upsertStrain = (strain) => {
-  return strainModel.findByIdAndUpdate(strain._id, strain, {upsert:true}).exec();
+  return strainModel.findByIdAndUpdate(strain._id, strain, {upsert:true, new:true}).exec();
 }
 
 saveStrains = (strains) => {

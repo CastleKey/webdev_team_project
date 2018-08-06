@@ -13,7 +13,7 @@ saveFlavor = (flavor) => {
 }
 
 upsertFlavor = (flavor) => {
-  return flavorModel.findByIdAndUpdate(flavor._id, flavor, {upsert:true}).exec();
+  return flavorModel.findByIdAndUpdate(flavor._id, flavor, {upsert:true, new:true}).exec();
 }
 
 saveFlavors = (flavors) => {

@@ -5,7 +5,6 @@ module.exports = app => {
   const url = "http://strainapi.evanbusse.com/" + process.env.EVANBUSSE_APIKEY;
   
   var makeReq = (link, func) => {
-    console.log()
     http.get(link, res => {
       res.setEncoding("utf8");
       let body = "";
@@ -67,10 +66,11 @@ module.exports = app => {
                         obj.flavors = fla.map((fla) => {
                           return fla.toString();
                         });
-                        strainRepo.upsertStrain(obj);
-                        if (first) {
-                          res.json(obj);
-                        }
+                        strainRepo.upsertStrain(obj).then((dbObj) => {
+                          if (first) {
+                            res.json(dbObj);
+                          }
+                        });
                       })(fla, firstTime)
                     });
                   })(eff, firstTime)

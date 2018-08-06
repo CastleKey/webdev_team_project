@@ -13,7 +13,7 @@ saveEffect = (effect) => {
 }
 
 upsertEffect = (effect) => {
-  return effectModel.findByIdAndUpdate(effect._id, effect, {upsert:true}).exec();
+  return effectModel.findByIdAndUpdate(effect._id, effect, {upsert:true, new:true}).exec();
 }
 
 saveEffects = (effects) => {
