@@ -68,5 +68,13 @@ app.get('/', function (req, res) {
   res.send('Node js REST server for weed');
 });
 
+
+// Serve only the static files form the dist directory
+app.use(express.static(__dirname + '/dist/webdev-team-project-angular'));
+
+app.get('/*', function(req,res) {  
+  res.sendFile(path.join(__dirname+'/dist/webdev-team-project-angular/index.html'));
+});
+
 var port = process.env.PORT || 3000;
 app.listen(port);
