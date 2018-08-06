@@ -1,5 +1,4 @@
 module.exports = app => {
-  const mongoose = require('mongoose');
   const strainRepo = require('../repository/strain.repository');
   const http = require('http');
   const url = "http://strainapi.evanbusse.com/" + process.env.EVANBUSSE_APIKEY;
