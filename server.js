@@ -2,18 +2,53 @@ const express = require('express')
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
-const http = require('https');
+const http = require('http');
 
 if (!process.env.EVANBUSSE_APIKEY) {
   throw "Missing env variable EVANBUSSE_APIKEY";
 }
+const EVANBUSSE_APIKEY = process.env.EVANBUSSE_APIKEY;
+const url = "http://strainapi.evanbusse.com/" + EVANBUSSE_APIKEY;
 
 mongoose.connect(process.env.MONGODB_URI 
               || 'mongodb://localhost/webdev_team_project', function(err){
   if (err) {
     throw err;
   }
-  //http.get()
+  if (process.env.SKIP_INIT_DB && process.env.SKIP_INIT_DB == "true") {
+    console.log("Skipping database init");
+    return;
+  }
+  http.get(url + "/searchdata/flavors", res => {
+    res.setEncoding("utf8");
+    let body = "";
+    res.on("data", data => {
+      body += data;
+    });
+    res.on("end", () => {
+      let flavors = JSON.parse(body);
+      let parsedFlavors = flavors.map((flavor) => {
+        return {_id: flavor};
+      });
+      const flavorRepo = require('./nodesrc/repository/flavor.repository');
+      flavorRepo.upsertFlavors(parsedFlavors);
+    });
+  });
+  http.get(url + "/searchdata/effects", res => {
+    res.setEncoding("utf8");
+    let body = "";
+    res.on("data", data => {
+      body += data;
+    });
+    res.on("end", () => {
+      let effects = JSON.parse(body);
+      let parsedEffects = effects.map((effect) => {
+        return {_id: effect.effect, category: effect.type.toUpperCase()};
+      });
+      const effectRepo = require('./nodesrc/repository/effect.repository');
+      effectRepo.upsertEffects(parsedEffects);
+    });
+  });
 });
 
 var app = express()
@@ -27,6 +62,7 @@ app.use(cors({
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+require('./nodesrc/service/strain.service')(app);
 
 app.get('/', function (req, res) {
   res.send('Node js REST server for weed');
