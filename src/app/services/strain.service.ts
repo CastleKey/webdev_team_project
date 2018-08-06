@@ -5,13 +5,19 @@ import { Injectable } from '@angular/core';
 })
 export class StrainService {
 
-  constructor() { }
+  url = "";
+
+  constructor() {
+    if (window.location.port == "4200") {
+      this.url = "http://localhost:3000"
+    }
+  }
   
   search(str) {
-    return fetch('/api/strain/search/' + str).then(response => response.json());
+    return fetch(this.url + '/api/strain/search/' + str).then(response => response.json());
   }
   
   findStrainByName(str) {
-    return fetch('/api/strain/' + str).then(response => response.json());
+    return fetch(this.url + '/api/strain/' + str).then(response => response.json());
   }
 }

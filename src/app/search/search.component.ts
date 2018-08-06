@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+
 import {StrainService} from '../services/strain.service';
 
 @Component({
@@ -10,9 +12,9 @@ export class SearchComponent implements OnInit {
 
   query = "";
   result = [];
-  selectedStrain = null;
 
-  constructor(private strainService: StrainService) { }
+  constructor(private strainService: StrainService,
+              private router: Router) { }
 
   ngOnInit() {
   }
@@ -24,8 +26,6 @@ export class SearchComponent implements OnInit {
   }
   
   select(name) {
-    this.strainService.findStrainByName(name).then((strain) => {
-      this.selectedStrain = JSON.stringify(strain);
-    });
+    this.router.navigate(['strain', name]);
   }
 }
