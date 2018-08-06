@@ -2,8 +2,8 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var strainSchema = new Schema({
-  name: { type: String, required: true, unique: true },
-  id: { type: Integer, required: true, unique: true },
+  _id: { type: String },
+  eb_id: { type: Number, required: true, unique: true },
   desc: { type: String, required: false },
   race: { type: String, 
           required: true,
@@ -16,17 +16,25 @@ var strainSchema = new Schema({
           }
         },
   flavors: 
-      { type: [{ type: Schema.Types.ObjectId, ref: 'Flavor' }], 
+      { type: [{ type: Schema.Types.String, ref: 'Flavor' }], 
         required: true,
         default: []
       },
   effects: 
-      { type: [{ type: Schema.Types.ObjectId, ref: 'Effect' }], 
+      { type: [{ type: Schema.Types.String, ref: 'Effect' }], 
         required: true,
         default: []
       }
 });
 
+strainSchema.virtual("name")
+    .get(function() {
+      return this._id;
+    })
+    .set(function(n) {
+      this._id = n;
+    });
+    
 var Strain = mongoose.model("Strain", strainSchema);
 
 module.exports = Strain;
