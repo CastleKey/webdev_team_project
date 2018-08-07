@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import {StrainService} from '../services/strain.service';
+import {ReviewService} from '../services/review.service';
+import {UserService} from '../services/user.service';
 
 @Component({
   selector: 'app-strain',
@@ -17,16 +19,27 @@ export class StrainComponent implements OnInit {
   medicalEffect = [];
   private sub;
   
+  user = null;
+  ratingFld = 1;
+  descFld = "";
+  
+  reviews = [];
+  
   constructor(private route: ActivatedRoute,
               private strainService: StrainService,
+              private reviewService: ReviewService,
+              private userService: UserService,
               private router: Router) { }
 
   ngOnInit() {
     this.strain = null;
+    this.userService.currentUser()
+        .then(u => this.user = u);
     this.sub = this.route.params.subscribe(params => {
       this.name = params['strain_name'];
       this.strainService.findStrainByName(this.name).then((strain) => {
         this.setStrain(strain);
+        this.getReview();
       });
     });
   }
@@ -49,5 +62,26 @@ export class StrainComponent implements OnInit {
         this.medicalEffect.push(eff);
       }
     });
+  }
+  
+  getReview() {
+    this.reviewService.findReviewByStrain(this.strain._id).then((reviews) => {
+      this.reviews = reviews;
+    });
+  }
+  
+  postReview() {
+    if (this.user == null || this.strain == null) {
+      window.alert("You need to login first");
+      return;
+    }
+    this.reviewService.postReview({
+      user: this.user._id,
+      strain: this.strain._id,
+      star: this.ratingFld,
+      desc: this.descFld
+    }).then((review) => {
+      this.getReview()
+    })
   }
 }

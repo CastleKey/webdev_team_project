@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
+
 import {UserService} from "../services/user.service";
+import {ReviewService} from '../services/review.service';
 
 @Component({
   selector: 'app-profile',
@@ -9,16 +11,22 @@ import {UserService} from "../services/user.service";
 })
 export class ProfileComponent implements OnInit {
 
-  user = {username: "", name:"", role:"REGULAR", email:null};
+  user = null;
   newPass = "";
   err;
   
+  reviews = [];
+  
   constructor(private router: Router,
+              private reviewService: ReviewService,
               private userService: UserService) { }
 
   ngOnInit() {
     this.userService.currentUser()
-        .then(u => this.user = u)
+        .then(u => {
+          this.user = u;
+          this.getReview();
+          })
         .catch(e => this.err = true);
   }
 
@@ -48,6 +56,21 @@ export class ProfileComponent implements OnInit {
         })
         .catch(e => this.err = true);
   }
+  
+  getReview() {
+    if (this.user == null) {
+      this.reviews = [];
+      return;
+    }
+    this.reviewService.findReviewByUser(this.user._id).then((reviews) => {
+      this.reviews = reviews;
+    });
+  }
 
+  deleteReview(review) {
+    this.reviewService.deleteReview(review._id).then((reviews) => {
+      this.getReview();
+    });
+  }
 }
 

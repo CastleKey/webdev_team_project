@@ -6,7 +6,7 @@
   	<strong>Warning!</strong> Error updating profile. Try 
   	<a routerLink="/login">loggining</a> in again?
   </div>
-	<div class="form-horizontal">
+	<div class="form-horizontal" *ngIf="user">
     <div class="form-group">
         <label class="control-label" for="usernameFld">
             Username
@@ -83,4 +83,21 @@
       </button>
     </div>
   </div>
+  <h1>Reviews</h1>
+  <ul class="list-group">
+    <li class="list-group-item"
+        *ngFor="let review of reviews">
+      <div class="row">
+        <h4 class="col">{{review.strain}}</h4>
+        <div class="col-xs-1">
+          <button class="btn btn-danger btn-block float-right"
+                  (click)="deleteReview(review)">
+            <span class="fa fa-close"></span>
+          </button>
+        </div>
+      </div>
+      <h5 class="">Score: {{review.star}}/5</h5>
+      <p class="ml-4">{{review.desc}}</p>
+    </li>
+  </ul>
 </div>
