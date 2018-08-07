@@ -5,7 +5,7 @@
   <p *ngIf="!strain.desc">No description avaliable yet. Sorry</p>
   <div class="row">
     <div class="col">
-      <h4>Flavors</h4>
+      <h4><i class="fa fa-lg fa-cutlery text-success"></i> Flavors</h4>
       <p *ngIf="strain.flavors == 0">Not known.</p>
       <ul class="list-group">
         <li class="list-group-item"
@@ -15,12 +15,32 @@
       </ul>
     </div>
     <div class="col">
-      <h4>Effects</h4>
-      <p *ngIf="strain.effects == 0">Not known.</p>
+      <h4><i class="fa fa-lg fa-plus-square text-primary"></i> Effects</h4>
+      <p *ngIf="positiveEffect.length == 0">Not known.</p>
       <ul class="list-group">
         <li class="list-group-item"
-            *ngFor="let eff of strain.effects">
-          {{eff}}
+            *ngFor="let eff of positiveEffect">
+          {{eff._id}}
+        </li>
+      </ul>
+    </div>
+    <div class="col">
+      <h4><i class="fa fa-lg fa-minus-square text-info"></i> Effects</h4>
+      <p *ngIf="negativeEffect.length == 0">Not known.</p>
+      <ul class="list-group">
+        <li class="list-group-item"
+            *ngFor="let eff of negativeEffect">
+          {{eff._id}}
+        </li>
+      </ul>
+    </div>
+    <div class="col">
+      <h4><i class="fa fa-lg fa-medkit text-danger"></i> Effects</h4>
+      <p *ngIf="medicalEffect.length == 0">Not known.</p>
+      <ul class="list-group">
+        <li class="list-group-item"
+            *ngFor="let eff of medicalEffect">
+          {{eff._id}}
         </li>
       </ul>
     </div>
