@@ -72,6 +72,7 @@ export class StrainComponent implements OnInit {
   
   postReview() {
     if (this.user == null || this.strain == null) {
+      window.alert("You need to login first");
       return;
     }
     this.reviewService.postReview({
