@@ -45,4 +45,50 @@
       </ul>
     </div>
   </div>
+  <div class="rounded border container">
+    <div class="form-horizontal">
+      <h4>Post Review</h4>
+      <div class="form-group">
+          <label class="control-label" for="ratingFld">
+              Score
+          </label>
+          <div class="">
+            <input type="number"
+                   placeholder="3"
+                   id="ratingFld"
+                   class="form-control"
+                   [(ngModel)]="ratingFld"/>
+          </div>
+      </div>
+      
+      <div class="form-group">
+          <label class="control-label" for="descFld">
+              Text
+          </label>
+          <div class="">
+            <textarea type="text"
+                   placeholder="Text"
+                   id="descFld"
+                   class="form-control"
+                   [(ngModel)]="descFld"></textarea>
+          </div>
+      </div>
+
+      <div class="mb-2">
+        <button id="loginBtn" 
+                class="btn btn-lg btn-primary btn-block"
+                (click)="postReview()">
+            Post
+        </button>
+      </div>
+    </div>
+  </div>
+  <h4>Reviews</h4>
+  <ul class="list-group">
+    <li class="list-group-item"
+        *ngFor="let review of reviews">
+      <h5>Score: {{review.star}}/5</h5>
+      <p class="ml-4">{{review.desc}}</p>
+    </li>
+  </ul>
 </div>
