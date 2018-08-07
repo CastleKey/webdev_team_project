@@ -15,11 +15,6 @@ var userSchema = new Schema({
               message: "Race is hybrid or sativa or indica"
           }
         },
-  reviews: 
-      { type: [{ type: Schema.Types.ObjectId, ref: 'Review' }], 
-        required: true,
-        default: []
-      },
   follows: 
       { type: [{ type: Schema.Types.ObjectId, ref: 'User' }], 
         required: true,
