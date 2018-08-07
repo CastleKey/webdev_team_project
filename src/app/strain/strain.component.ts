@@ -12,6 +12,9 @@ export class StrainComponent implements OnInit {
 
   name = "";
   strain = null;
+  positiveEffect = [];
+  negativeEffect = [];
+  medicalEffect = [];
   private sub;
   
   constructor(private route: ActivatedRoute,
@@ -22,8 +25,9 @@ export class StrainComponent implements OnInit {
     this.strain = null;
     this.sub = this.route.params.subscribe(params => {
       this.name = params['strain_name'];
-      console.log(this.name);
-      this.strainService.findStrainByName(this.name).then((strain) => {this.strain = strain;});
+      this.strainService.findStrainByName(this.name).then((strain) => {
+        this.setStrain(strain);
+      });
     });
   }
   
@@ -31,4 +35,19 @@ export class StrainComponent implements OnInit {
     this.sub.unsubscribe();
   }
 
+  setStrain(strain) {
+    this.strain = strain;
+    this.positiveEffect = [];
+    this.negativeEffect = [];
+    this.medicalEffect = [];
+    strain.effects.forEach((eff) => {
+      if (eff.category == "POSITIVE") {
+        this.positiveEffect.push(eff);
+      } else if (eff.category == "NEGATIVE") {
+        this.negativeEffect.push(eff);
+      } else {
+        this.medicalEffect.push(eff);
+      }
+    });
+  }
 }

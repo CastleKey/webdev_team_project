@@ -1,0 +1,63 @@
+<div class="container">
+  <div class="mb-4">
+    	<h1>Register</h1>
+  </div>
+  <div class="alert alert-warning"
+       *ngIf="errMatch">
+  	<strong>Warning!</strong> Password no match.
+  </div>
+  <div class="alert alert-warning"
+       *ngIf="errReg">
+  	<strong>Warning!</strong> Cannot Register.
+  </div>
+	<div class="form-horizontal">
+    <div class="form-group">
+        <label class="control-label" for="usernameFld">
+            Username
+        </label>
+        <div class="">
+          <input type="text"
+                 placeholder="Username"
+                 id="usernameFld"
+                 class="form-control"
+                 [(ngModel)]="username"/>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label" for="passwordFld">
+            Password
+        </label>
+        <div class="">
+          <input type="password"
+                 placeholder="Password"
+                 id="passwordFld"
+                 class="form-control"
+                 [(ngModel)]="password"/>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label" for="passwordFld2">
+            Password Again
+        </label>
+        <div class="">
+          <input type="password"
+                 placeholder="Password Again"
+                 id="passwordFld2"
+                 class="form-control"
+                 [(ngModel)]="passwordAgain"/>
+        </div>
+    </div>
+    <div class="">
+      <button id="loginBtn" 
+              class="btn btn-lg btn-primary btn-block"
+              (click)="register(username, password, passwordAgain)">
+          Register
+      </button>
+      <a routerLink="/login" class="wbdv-link">
+          Login
+      </a>
+    </div>
+  </div>
+</div>

@@ -1,13 +1,13 @@
 const strainModel = require('../model/strain.model');
+const effectModel = require('../model/effect.model');
+const flavorModel = require('../model/flavor.model');
 
 findAllStrains = () => {
-  return strainModel.find();//.then((err, strains) => {
-    
-//  });
+  return strainModel.find();
 }
 
 findStrain = (name) => {
-  return strainModel.findById(name);
+  return strainModel.findById(name).populate("effects").exec();
 }
 
 saveStrain = (strain) => {
@@ -31,7 +31,7 @@ upsertStrains = (strains) => {
 }
 
 searchStrainsByName = (q) => {
-  return strainModel.find({_id: new RegExp('^'+q+'$', "i")})
+  return strainModel.find({_id: new RegExp(q, "i")})
 }
 
 module.exports = {

@@ -1,8 +1,9 @@
 const express = require('express')
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const mongoose = require('mongoose');
 const http = require('http');
+const mongoose = require('mongoose');
+const path = require('path');
 
 if (!process.env.EVANBUSSE_APIKEY) {
   throw "Missing env variable EVANBUSSE_APIKEY";
@@ -62,7 +63,15 @@ app.use(cors({
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+var session = require('express-session')
+app.use(session({
+  resave: false,
+  saveUninitialized: true,
+  secret: 'any string'
+}));
+
 require('./nodesrc/service/strain.service')(app);
+require('./nodesrc/service/user.service')(app);
 
 // Serve only the static files form the dist directory
 app.use(express.static(__dirname + '/dist/webdev-team-project-angular'));

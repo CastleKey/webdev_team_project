@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="mb-4">
+    	<h1>Sign In</h1>
+  </div>
+  <div class="alert alert-warning"
+       *ngIf="err">
+  	<strong>Warning!</strong> Cannot login.
+  </div>
+	<div class="form-horizontal">
+    <div class="form-group">
+        <label class="control-label" for="usernameFld">
+            Username
+        </label>
+        <div class="">
+          <input type="text"
+                 placeholder="Username"
+                 id="usernameFld"
+                 class="form-control"
+                 [(ngModel)]="username"/>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label" for="passwordFld">
+            Password
+        </label>
+        <div class="">
+          <input type="password"
+                 placeholder="Password"
+                 id="passwordFld"
+                 class="form-control"
+                 [(ngModel)]="password"/>
+        </div>
+    </div>
+    <div class="">
+      <button id="loginBtn" 
+              class="btn btn-lg btn-primary btn-block"
+              (click)="login(username, password)">
+          Login
+      </button>
+      <a routerLink="/register" class="wbdv-link">
+          Register
+      </a>
+    </div>
+  </div>
+</div>
+
