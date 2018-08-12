@@ -8,9 +8,14 @@
         class="btn btn-lg btn-primary btn-block"
         (click)="search(query)">Search</button>
 <ul class="list-group">
-  <li class="list-group-item"
-      *ngFor="let res of result"
-      (click)="select(res)">
-    {{res}}
-  </li>
+  <div *ngFor="let res of result; let i=index">
+    <li class="list-group-item" *ngIf="i<10"
+       (click)="select(res)">
+      {{res}}
+    </li>
+    <li class="list-group-item d-none d-sm-block" *ngIf="i>=10"
+       (click)="select(res)">
+      {{res}}
+    </li>
+  </div>
 </ul>
