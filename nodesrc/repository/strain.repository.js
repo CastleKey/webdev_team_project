@@ -31,7 +31,7 @@ upsertStrains = (strains) => {
 }
 
 searchStrainsByName = (q) => {
-  return strainModel.find({_id: new RegExp(q, "i")})
+  return strainModel.find({_id: new RegExp(q, "i")}).limit(20)
 }
 
 module.exports = {
