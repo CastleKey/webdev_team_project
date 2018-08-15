@@ -4,32 +4,21 @@
   </div>
   <h1>
     Reviews  
-    <div class="float-right" *ngIf="!disabled && followed">
+    <div class="float-right" *ngIf="loggedUser != null && user._id != loggedUser._id && !disabled && followed">
       <button id="unFollowBtn" 
               class="btn btn-caution"
               (click)="unfollow()">unFollow</button>
     </div>
-    <div class="float-right" *ngIf="!disabled && !followed">
+    <div class="float-right" *ngIf="loggedUser != null && user._id != loggedUser._id && !disabled && !followed">
       <button id="followBtn" 
               class="btn btn-success"
               (click)="follow()">Follow</button>
     </div>
   </h1>
-  <p class="ml-4" *ngIf="reviews.length === 0">Nothing here yet</p>
   <ul class="list-group">
-    <li class="list-group-item"
-        *ngFor="let review of reviews">
-      <div class="row">
-        <h4 class="col">{{review.strain}}</h4>
-        <div class="col-xs-1">
-          <button class="btn btn-danger btn-block float-right"
-                  (click)="deleteReview(review)">
-            <span class="fa fa-close"></span>
-          </button>
-        </div>
-      </div>
-      <h5 class="">Score: {{review.star}}/5</h5>
-      <p class="ml-4">{{review.desc}}</p>
-    </li>
+    <p class="ml-2" *ngIf="reviews.length === 0">Nothing here yet.</p>
+    <div *ngFor="let review of reviews">
+      <app-review-card [review]="review"></app-review-card>
+    </div>
   </ul>
 </div>

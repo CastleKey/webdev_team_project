@@ -13,6 +13,7 @@ import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SearchUserComponent } from './search-user/search-user.component';
 import { PersonalComponent } from './personal/personal.component';
+import { ReviewCardComponent } from './review-card/review-card.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { PersonalComponent } from './personal/personal.component';
     RegisterComponent,
     ProfileComponent,
     SearchUserComponent,
-    PersonalComponent
+    PersonalComponent,
+    ReviewCardComponent
   ],
   imports: [
     BrowserModule,
