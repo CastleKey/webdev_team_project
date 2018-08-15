@@ -40,6 +40,10 @@ searchReviewsByUser = (userId) => {
   return reviewModel.find({user: userId});
 }
 
+searchReviewsByUsers = (loUser) => {
+  return reviewModel.find({_id: {$in: loUser}});
+}
+
 searchReviewsByStrain = (strainName) => {
   return reviewModel.find({strain: strainName});
 }
@@ -57,6 +61,7 @@ module.exports = {
   updateReview,
   upsertReviews,
   searchReviewsByUser,
+  searchReviewsByUsers,
   searchReviewsByStrain,
   deleteReview
 }

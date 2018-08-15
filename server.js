@@ -73,6 +73,7 @@ app.use(session({
 require('./nodesrc/service/strain.service')(app);
 require('./nodesrc/service/user.service')(app);
 require('./nodesrc/service/review.service')(app);
+require('./nodesrc/service/follow.service')(app);
 
 // Serve only the static files form the dist directory
 app.use(express.static(__dirname + '/dist/webdev-team-project-angular'));

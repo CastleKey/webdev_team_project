@@ -14,7 +14,8 @@ var reviewSchema = new Schema({
               message: "rating is from 1-5"
           }
         },
-  desc: { type: String, required: true, default: "" }
+  desc: { type: String, required: true, default: "" },
+  time: { type: Date, required: true, default: Date.now }
 });
 
 var Review = mongoose.model("Review", reviewSchema);
