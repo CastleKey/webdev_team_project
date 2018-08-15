@@ -1,7 +1,20 @@
-<div class="container">
-  <h1>Welcome to this site</h1>
-  
-  <h3>Reviews</h3>
+<div class="container" *ngIf="user">
+	<div class="text-center mb-4">
+    	<h1>{{user.username}}</h1>
+  </div>
+  <h1>
+    Reviews  
+    <div class="float-right" *ngIf="!disabled && followed">
+      <button id="unFollowBtn" 
+              class="btn btn-caution"
+              (click)="unfollow()">unFollow</button>
+    </div>
+    <div class="float-right" *ngIf="!disabled && !followed">
+      <button id="followBtn" 
+              class="btn btn-success"
+              (click)="follow()">Follow</button>
+    </div>
+  </h1>
   <p class="ml-4" *ngIf="reviews.length === 0">Nothing here yet</p>
   <ul class="list-group">
     <li class="list-group-item"
