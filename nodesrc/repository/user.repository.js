@@ -4,8 +4,8 @@ findAllUsers = () => {
   return userModel.find();
 }
 
-findUser = (name) => {
-  return userModel.findById(name);
+findUser = (id) => {
+  return userModel.findById(id);
 }
 
 findUserByNameAndPassword = (username, password) => {
@@ -57,7 +57,7 @@ upsertUsers = (users) => {
 }
 
 searchUsersByName = (q) => {
-  return users.find({_id: new RegExp('^'+q+'$', "i")})
+  return userModel.find({username: new RegExp(q, "i")});
 }
 
 module.exports = {

@@ -124,6 +124,24 @@ module.exports = (app) => {
     });
   });
   
+  app.get("/api/user/search", function (req, res) {
+    let query = req.query["q"];
+    userRepo.searchUsersByName(query).then((users) => {
+      res.send(users);
+    });
+  })
+  
+  app.get("/api/user/profile/:userId", function (req, res) {
+    let userId = req.params["userId"];
+    userRepo.findUser(userId).then((dbUser) => {
+      if (dbUser === null) {
+        res.sendStatus(400);
+        return;
+      }
+      res.send(dbUser);
+    });
+  })
+  
   //fetch("http://localhost:3200/api/profile", {method:'DELETE'});
   //app.delete("/api/user/profile", function (req, res) {
     // Not implemented
