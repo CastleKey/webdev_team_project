@@ -3,9 +3,18 @@ module.exports = (app) => {
   const reviewRepo = require('../repository/review.repository');
   
   app.post("/api/follow/user/:fromUserId/:toUserId", function (req, res) {
+    if (req.session["user"] === null || req.session["user"] === undefined) {
+      res.sendStatus(400);
+      return;
+    }
+    if (req.session["user"]._id != req.params["fromUserId"]) {
+      res.sendStatus(400);
+      return;
+    }
     userRepo.findUser(req.params["fromUserId"]).then((user) => {
-      userRepo.addUserFollowing(user, req.params["toUserId"]).then((user) => {
-        res.send(user);
+      userRepo.addUserFollowing(user, req.params["toUserId"]).then((dbUser) => {
+        req.session["user"] = dbUser;
+        res.send(dbUser);
       });
     });
   })
@@ -18,9 +27,18 @@ module.exports = (app) => {
   })
   
   app.delete("/api/follow/user/:fromUserId/:toUserId", function (req, res) {
+    if (req.session["user"] === null || req.session["user"] === undefined) {
+      res.sendStatus(400);
+      return;
+    }
+    if (req.session["user"]._id != req.params["fromUserId"]) {
+      res.sendStatus(400);
+      return;
+    }
     userRepo.findUser(req.params["fromUserId"]).then((user) => {
-      userRepo.removeUserFollowing(user, req.params["toUserId"]).then((user) => {
-        res.send(user);
+      userRepo.removeUserFollowing(user, req.params["toUserId"]).then((dbUser) => {
+        req.session["user"] = dbUser;
+        res.send(dbUser);
       });
     });
   })
