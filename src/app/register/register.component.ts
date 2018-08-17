@@ -25,7 +25,7 @@ export class RegisterComponent implements OnInit {
   register(username, password, passwordAgain) {
     this.errMatch = false;
     this.errReg = false;
-    if (password != passwordAgain) {
+    if (password !== passwordAgain) {
       this.errMatch = true;
       return;
     }
