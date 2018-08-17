@@ -23,10 +23,10 @@ $ mongod
 
 ## Node server:
 Open a new terminal tab, in the same directory, type the following:
-
+$ npm run-script heroku-postbuild
 $ EVANBUSSE_APIKEY={YOUR KEY FROM http://strains.evanbusse.com/} npm start
 
-This begins the server.  
+This begins the server and generates dist file.
 
 ## Client side:
 Open a new tab in the same directory and type the following to open on localhost:4200:
