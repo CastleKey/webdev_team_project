@@ -5,14 +5,14 @@ import { Injectable } from '@angular/core';
 })
 export class UserService {
 
-  url = "";
+  url = '';
 
-  constructor() { 
-    if (window.location.port == "4200") {
-      this.url = "http://localhost:3000"
+  constructor() {
+    if (window.location.port === '4200') {
+      this.url = 'http://localhost:3000';
     }
   }
-  
+
   login(user) {
     return fetch(this.url + '/api/user/login', {
       method: 'post',
@@ -79,23 +79,23 @@ export class UserService {
     });
   }
   */
-  
+
   searchUser(q) {
     return fetch(this.url + '/api/user/search?q=' + q).then(response => response.json());
   }
-  
+
   getUser(userId) {
     return fetch(this.url + '/api/user/profile/' + userId).then(response => response.json());
   }
-  
+
   listeners = [];
-  
+
   subscribe(fun) {
     this.listeners.push(fun);
   }
-  
+
   update(user) {
-    if (user._id == undefined || user._id == null){
+    if (user._id == undefined || user._id == null) {
       user = null;
     }
     this.listeners.forEach((fun) => {

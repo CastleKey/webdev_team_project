@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {Router, ActivatedRoute} from "@angular/router";
+import {Router, ActivatedRoute} from '@angular/router';
 
-import {UserService} from "../services/user.service";
-import {ReviewService} from "../services/review.service";
-import {FollowService} from "../services/follow.service";
+import {UserService} from '../services/user.service';
+import {ReviewService} from '../services/review.service';
+import {FollowService} from '../services/follow.service';
 
 @Component({
   selector: 'app-home',
@@ -43,9 +43,9 @@ export class HomeComponent implements OnInit {
       });
     });
   }
-  
+
   goToUser(userId) {
-    this.router.navigate(["profile", userId]);
+    this.router.navigate(['profile', userId]);
   }
 
 }

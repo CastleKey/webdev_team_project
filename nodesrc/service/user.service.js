@@ -129,7 +129,7 @@ module.exports = (app) => {
     userRepo.searchUsersByName(query).then((users) => {
       res.send(users);
     });
-  })
+  });
   
   app.get("/api/user/profile/:userId", function (req, res) {
     let userId = req.params["userId"];

@@ -10,7 +10,7 @@ import {StrainService} from '../services/strain.service';
 })
 export class SearchComponent implements OnInit {
 
-  query = "";
+  query = '';
   result = [];
 
   constructor(private strainService: StrainService,
@@ -18,13 +18,13 @@ export class SearchComponent implements OnInit {
 
   ngOnInit() {
   }
-  
+
   search(query) {
     this.strainService.search(query).then((res) => {
       this.result = res;
     });
   }
-  
+
   select(name) {
     this.router.navigate(['strain', name]);
   }

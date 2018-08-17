@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Input, Output } from '@angular/core';
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
 
-import {UserService} from "../services/user.service";
+import {UserService} from '../services/user.service';
 import {ReviewService} from '../services/review.service';
 
 @Component({
@@ -21,13 +21,13 @@ export class ReviewCardComponent implements OnInit {
 
   ngOnInit() {
   }
-  
+
   goToStrain() {
-    this.router.navigate(["strain", this.review.strain]);
+    this.router.navigate(['strain', this.review.strain]);
   }
-  
+
   goToUser(str) {
-    this.router.navigate(["profile", str]);
+    this.router.navigate(['profile', str]);
   }
 
   deleteReview(review) {
