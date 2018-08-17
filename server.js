@@ -16,6 +16,14 @@ mongoose.connect(process.env.MONGODB_URI
   if (err) {
     throw err;
   }
+  const userRepo = require("./nodesrc/repository/user.repository");
+  const crypto = require('crypto');
+  const commonSalt = "webdev-user::";
+  userRepo.saveUser({
+    username: "admin",
+    password: crypto.createHash('md5').update(commonSalt + "admin").digest('hex'),
+    role: "ADMIN"
+  }).then().catch(function (err) {return;});
   if (process.env.SKIP_INIT_DB && process.env.SKIP_INIT_DB == "true") {
     console.log("Skipping database init");
     return;
