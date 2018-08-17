@@ -14,7 +14,6 @@ export class AdminComponent implements OnInit {
   role: String;
 
   err;
-
   errMatch;
   errReg;
 
@@ -37,6 +36,21 @@ export class AdminComponent implements OnInit {
     this.userService.deleteUser(user.username).then((users) => {
       this.getUsers();
     });
+  }
+
+  updateUser(username, password, role) {
+    this.errReg = false;
+    const user = {
+      username: username,
+      password: password,
+      role: role
+    };
+    this.userService.adminUpdateUser(user)
+        .then(u => {
+          this.userService.update(u);
+          this.getUsers();
+        })
+        .catch(e => this.errReg = true);
   }
 
   createUser(username, password, role) {

@@ -78,6 +78,17 @@ export class UserService {
     }).then(response => response.json());
   }
 
+  adminUpdateUser(user) {
+    return fetch(this.url + '/api/user/updateUser', {
+      method: 'PUT',
+      credentials: 'include',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(user)
+    }).then(response => response.json());
+  }
+
   updatePassword(password) {
     return fetch(this.url + '/api/user/updatePassword', {
       method: 'PUT',
@@ -88,15 +99,6 @@ export class UserService {
       body: JSON.stringify({password:password})
     }).then(response => response.json());
   }
-
-  /**
-  deleteUser() {
-    return fetch(this.url + '/api/profile', {
-      method: 'DELETE',
-      credentials: 'include'
-    });
-  }
-  */
 
   deleteUser(username) {
     return fetch(this.url + '/api/user/' + username, {

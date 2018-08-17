@@ -34,6 +34,12 @@ updateUser = (id, user) => {
                                      {new:true}).exec();
 }
 
+adminUpdateUser = (id, user) => {
+  return userModel.findByIdAndUpdate(id,
+                                     {$set: {password: user.password, role: user.role}},
+                                     {new:true}).exec();
+}
+
 updateUserPassword = (id, password) => {
   return userModel.findByIdAndUpdate(id,
                                      {$set: {password: password}},
@@ -66,6 +72,7 @@ module.exports = {
   saveUsers,
   upsertUser,
   updateUser,
+  adminUpdateUser,
   updateUserPassword,
   upsertUsers,
   searchUsersByName
