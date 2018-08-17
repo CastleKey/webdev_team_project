@@ -14,7 +14,7 @@ This project centres around marijuana strains and their relative effects. Visito
 On either system, Mac, Windows, you need to go to [this strains website where we got our API from](http://strains.evanbusse.com/) and click 'get a key'. Copy the key you received.
 
 
-#Mac
+# Mac
 ## Mongo database:
 Navigate to the folder through terminal and type:
 
@@ -35,7 +35,7 @@ $ ng serve
 
 
 
-#Windows
+# Windows
 Start server on windows, don't forget to "SET EVANBUSSE_APIKEY=$$" to set the api key replacing $$ with the actual api key before doing npm start.  
 
 
