@@ -34,17 +34,4 @@ export class AdminComponent implements OnInit {
     });
   }
 
-  // login(username, password) {
-  //   const user = {
-  //     username: username,
-  //     password: password
-  //   };
-  //   this.userService.login(user)
-  //       .then(u => {
-  //         this.userService.update(u);
-  //         this.router.navigate(['profile'])
-  //       })
-  //       .catch(e => this.err = true);
-  // }
-
 }

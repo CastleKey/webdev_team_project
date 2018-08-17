@@ -87,12 +87,12 @@ module.exports = (app) => {
   });
 
   //fetch("http://localhost:3200/api/user", {method:'DELETE'});
-  app.delete("/api/user/:userId", function (req, res) {
+  app.delete("/api/user/:username", function (req, res) {
     // if (req.session["user"] === null || req.session["user"] === undefined) {
     //   res.sendStatus(400);
     //   return;
     // }
-    userRepo.findUser(req.params["userId"]).then((dbUser) => {
+    userRepo.findUserByName(req.params["username"]).then((dbUser) => {
       userRepo.deleteUser(dbUser.username)
           .then((dbUser) => {
             if (dbUser === null) {
