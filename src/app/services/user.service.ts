@@ -7,12 +7,12 @@ export class UserService {
 
   url = "";
 
-  constructor() { 
+  constructor() {
     if (window.location.port == "4200") {
       this.url = "http://localhost:3000"
     }
   }
-  
+
   login(user) {
     return fetch(this.url + '/api/user/login', {
       method: 'post',
@@ -23,14 +23,14 @@ export class UserService {
       body: JSON.stringify(user)
     }).then(response => response.json());
   }
-  
+
   logout() {
     return fetch(this.url + '/api/user/logout', {
       method: 'post',
       credentials: 'include'
     });
   }
-  
+
   register(user) {
     return fetch(this.url + '/api/user/register', {
       method: 'post',
@@ -48,7 +48,14 @@ export class UserService {
       credentials: 'include'
     }).then(response => response.json())
   }
-  
+
+  findAllUsers() {
+    return fetch(this.url + '/api/user/findusers', {
+      method: 'get',
+      credentials: 'include'
+    }).then(response => response.json())
+  }
+
   updateUser(user) {
     return fetch(this.url + '/api/user/profile', {
       method: 'PUT',
@@ -59,7 +66,7 @@ export class UserService {
       body: JSON.stringify(user)
     }).then(response => response.json());
   }
-  
+
   updatePassword(password) {
     return fetch(this.url + '/api/user/updatePassword', {
       method: 'PUT',
@@ -70,7 +77,7 @@ export class UserService {
       body: JSON.stringify({password:password})
     }).then(response => response.json());
   }
-  
+
   /**
   deleteUser() {
     return fetch(this.url + '/api/profile', {
@@ -79,13 +86,27 @@ export class UserService {
     });
   }
   */
-  
+
+  // deleteReview(reviewId) {
+  //   return fetch(this.url + '/api/review/' + reviewId, {
+  //     method: 'DELETE',
+  //     credentials: 'include'
+  //   }).then(response => response.json());
+  // }
+
+  deleteUser(username) {
+    return fetch(this.url + '/api/user/' + username, {
+      method: 'DELETE',
+      credentials: 'include'
+    }).then(response => response.json());
+  }
+
   listeners = [];
-  
+
   subscribe(fun) {
     this.listeners.push(fun);
   }
-  
+
   update(user) {
     if (user._id == undefined || user._id == null){
       user = null;

@@ -1,36 +1,42 @@
-<nav class="navbar navbar-expand-lg navbar-light 
+<nav class="navbar navbar-expand-lg navbar-light
                       bg-light rounded mb-4">
   <div class="container">
     <a class="navbar-brand" routerLink="/">Mara</a>
-    <button class="navbar-toggler" 
-            type="button" 
-            data-toggle="collapse" 
-            data-target="#courseManagerNavFields" 
-            aria-controls="courseManagerNavFields" 
-            aria-expanded="false" 
+    <button class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#courseManagerNavFields"
+            aria-controls="courseManagerNavFields"
+            aria-expanded="false"
             aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="courseManagerNavFields">
       <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
         <li class="nav-item" *ngIf="user === null">
-          <a class="nav-link" 
+          <a class="nav-link"
              routerLink="/login">
                Login
           </a>
         </li>
         <li class="nav-item" *ngIf="user === null">
-          <a class="nav-link" 
+          <a class="nav-link"
              routerLink="/register">
                Sign up
           </a>
         </li>
-        <li class="nav-item" *ngIf="user !== null && user.role == 'ADMIN'">
-          <a class="nav-link" 
+        <li class="nav-item" *ngIf="user === null">
+          <a class="nav-link"
              routerLink="/admin">
                Admin
           </a>
         </li>
+        <!-- <li class="nav-item" *ngIf="user !== null && user.role == 'ADMIN'">
+          <a class="nav-link"
+             routerLink="/admin">
+               Admin
+          </a>
+        </li> -->
       </ul>
       <a *ngIf="user !== null" routerLink="/profile">{{user.username}}'s Profile</a>
     </div>
