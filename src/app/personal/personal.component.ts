@@ -41,11 +41,11 @@ export class PersonalComponent implements OnInit {
       });
     });
   }
-  
+  /**
   getSantizeUrl(address : string) {
     return this.sanitizer.bypassSecurityTrustResourceUrl("https://www.google.com/maps/embed/v1/place?q=" + address + "&key=AIzaSyCzGsF-XfDYYh04BnIuVFJTIpsgZv8b4bQ");
   }
-  
+  */
   getReview() {
     this.reviewService.findReviewByUser(this.user._id).then((reviews) => {
       this.reviews = reviews;

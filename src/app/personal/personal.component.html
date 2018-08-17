@@ -3,9 +3,9 @@
     	<h1>{{user.username}}</h1>
   </div>
   <div *ngIf="user.role == 'STORE'">
-  {{user.address}}
+  Address: <a href="http://maps.google.com/?q={{user.address}}">{{user.address}}</a>
   <div className="row">
-  <iframe height="200" frameborder="0" style="border:0" [src]="getSantizeUrl(user.address)" allowfullscreen></iframe>
+  <!--<iframe height="200" frameborder="0" style="border:0" [src]="getSantizeUrl(user.address)" allowfullscreen></iframe>-->
   </div>
   </div>
   <h1>
