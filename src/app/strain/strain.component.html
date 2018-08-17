@@ -35,7 +35,7 @@
       </ul>
     </div>
     <div class="col">
-      <h4><i class="fa fa-lg fa-medkit text-danger"></i> Effects</h4>
+      <h4><i class="fa fa-lg fa-medkit text-danger"></i> Treats</h4>
       <p *ngIf="medicalEffect.length == 0">Not known.</p>
       <ul class="list-group">
         <li class="list-group-item"
@@ -45,7 +45,7 @@
       </ul>
     </div>
   </div>
-  <div class="rounded border container">
+  <div class="rounded border container mt-2">
     <div class="form-horizontal">
       <h4>Post Review</h4>
       <div class="form-group">
@@ -85,10 +85,9 @@
   </div>
   <h4>Reviews</h4>
   <ul class="list-group">
-    <li class="list-group-item"
-        *ngFor="let review of reviews">
-      <h5>Score: {{review.star}}/5</h5>
-      <p class="ml-4">{{review.desc}}</p>
-    </li>
+    <p class="ml-4" *ngIf="reviews.length === 0">Nothing here yet.</p>
+    <div *ngFor="let review of reviews">
+      <app-review-card [review]="review"></app-review-card>
+    </div>
   </ul>
 </div>

@@ -30,7 +30,7 @@ module.exports = (app) => {
   });
 
   app.get("/api/review/user/:userId", function (req, res) {
-    reviewRepo.searchReviewsByUser(req.params["userId"]).then((dbReview) => {
+    reviewRepo.searchReviewsByUser(req.params["userId"]).populate("user").then((dbReview) => {
       if (dbReview == null) {
         res.sendStatus(400);
         return;
@@ -40,7 +40,7 @@ module.exports = (app) => {
   });
 
   app.get("/api/review/strain/:strainId", function (req, res) {
-    reviewRepo.searchReviewsByStrain(req.params["strainId"]).then((dbReview) => {
+    reviewRepo.searchReviewsByStrain(req.params["strainId"]).populate("user").then((dbReview) => {
       if (dbReview == null) {
         res.sendStatus(400);
         return;
@@ -50,7 +50,7 @@ module.exports = (app) => {
   });
 
   app.get("/api/review/:reviewId", function (req, res) {
-    reviewRepo.findReview(req.params["reviewId"]).then((dbReview) => {
+    reviewRepo.findReview(req.params["reviewId"]).populate("user").then((dbReview) => {
       if (dbReview == null) {
         res.sendStatus(400);
         return;

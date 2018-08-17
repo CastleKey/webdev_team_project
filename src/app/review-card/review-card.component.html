@@ -1,0 +1,16 @@
+<li class="list-group-item">
+  <div class="row">
+    <h4 class="col" (click)="goToStrain()">{{review.strain}}</h4>
+    <div class="col-xs-1">
+      <button class="btn btn-danger btn-block float-right"
+              *ngIf="deletable != false"
+              (click)="deleteReview(review)">
+        <span class="fa fa-close"></span>
+      </button>
+    </div>
+  </div>
+  <small class="ml-3" *ngIf="review.user.username" (click)="goToUser(review.user._id)">{{review.user.username}}</small>
+  <small class="ml-3" *ngIf="!review.user.username" (click)="goToUser(review.user)">Go To User</small>
+  <h5 class="">Score: {{review.star}}/5</h5>
+  <p class="ml-4">{{review.desc}}</p>
+</li>
