@@ -20,7 +20,7 @@
           <th><input type="text" class="form-control" placeholder="password" id="password" [(ngModel)]="password" /></th>
 
           <th>
-            <select class="form-control" id='role'>
+            <select class="form-control" id="role" [(ngModel)]="role">
               <option value="REGULAR">
                 Regular
               </option>
@@ -41,7 +41,7 @@
           </th>
 
           <th>
-            <button type="button" class="btn btn-success" id='createBtn' (click)="createUser(username, password)">Create</button>
+            <button type="button" class="btn btn-success" id='createBtn' (click)="createUser(username, password,role)">Create</button>
           </th>
         </tr>
       </tbody>

@@ -11,6 +11,8 @@ export class AdminComponent implements OnInit {
 
   username: String;
   password: String;
+  role: String;
+
   err;
 
   errMatch;
@@ -37,12 +39,13 @@ export class AdminComponent implements OnInit {
     });
   }
 
-  createUser(username, password) {
+  createUser(username, password, role) {
     this.errMatch = false;
     this.errReg = false;
     const user = {
       username: username,
       password: password,
+      role: role
     };
     this.userService.createUser(user)
         .then(u => {

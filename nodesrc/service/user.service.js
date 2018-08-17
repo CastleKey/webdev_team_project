@@ -48,7 +48,8 @@ module.exports = (app) => {
     var user = req.body;
     var newUser = {
       username: user.username,
-      password: crypto.createHash('md5').update(commonSalt + user.password).digest('hex')
+      password: crypto.createHash('md5').update(commonSalt + user.password).digest('hex'),
+      role: user.role
     };
     userRepo.saveUser(newUser).then((dbUser) => {
       if (dbUser == null) {
