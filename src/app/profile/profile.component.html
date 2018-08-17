@@ -54,6 +54,19 @@
         </div>
     </div>
 
+    <div *ngIf="user.role == 'STORE'" class="form-group">
+        <label class="control-label" for="addressFld">
+            Address
+        </label>
+        <div class="">
+          <input type="text"
+                 placeholder="Address"
+                 id="addressFld"
+                 class="form-control"
+                 [(ngModel)]="user.address"/>
+        </div>
+    </div>
+
     <div class="form-group">
         <label class="control-label" for="roleFld">
             Role

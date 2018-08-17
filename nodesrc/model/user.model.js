@@ -5,6 +5,7 @@ var userSchema = new Schema({
   username: { type: String, required: true, unique: true },
   password: { type: String, required: true, select: false },
   email: { type: String, required: false, unique: true, sparse: true },
+  address: { type: String, default: "" },
   role: { type: String, 
           required: true,
           default: "REGULAR",
