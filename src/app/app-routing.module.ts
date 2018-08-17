@@ -20,7 +20,7 @@ const routes: Routes = [
   { path: 'profile/:userId', component: PersonalComponent },
   { path: 'about', component: AboutComponent }
 ];
- 
+
 @NgModule({
   imports: [ RouterModule.forRoot(routes) ],
   exports: [ RouterModule ]
