@@ -24,7 +24,7 @@
   <ul class="list-group">
     <p class="ml-2" *ngIf="reviews.length === 0">Nothing here yet.</p>
     <div *ngFor="let review of reviews">
-      <app-review-card [review]="review"></app-review-card>
+      <app-review-card [review]="review" [user]="loggedUser"></app-review-card>
     </div>
   </ul>
 </div>

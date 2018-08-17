@@ -14,6 +14,7 @@ var reviewSchema = new Schema({
               message: "rating is from 1-5"
           }
         },
+  starLit: {type: Boolean, required: true, default: false },
   desc: { type: String, required: true, default: "" },
   time: { type: Date, required: true, default: Date.now }
 });

@@ -13,6 +13,7 @@ export class ReviewCardComponent implements OnInit {
 
   @Input() review;
   @Input() deletable?: boolean = false;
+  @Input() user?: any = null;
   @Output() onDeleted = new EventEmitter<boolean>();
 
   constructor(private router: Router,
@@ -28,6 +29,13 @@ export class ReviewCardComponent implements OnInit {
   
   goToUser(str) {
     this.router.navigate(["profile", str]);
+  }
+  
+  updateStarLit() {
+    this.review.starLit = !this.review.starLit;
+    this.reviewService.updateReview(this.review).then((review) => {
+      
+    });
   }
 
   deleteReview(review) {
