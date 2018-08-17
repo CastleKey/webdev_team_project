@@ -44,6 +44,30 @@ module.exports = (app) => {
     });
   });
 
+  app.post("/api/user/createUser", function (req, res) {
+    var user = req.body;
+    var newUser = {
+      username: user.username,
+      password: crypto.createHash('md5').update(commonSalt + user.password).digest('hex')
+    };
+    userRepo.saveUser(newUser).then((dbUser) => {
+      if (dbUser == null) {
+        res.sendStatus(400);
+        return;
+      }
+      res.json(dbUser)
+    }).catch((err) => {
+      console.log(err);
+      try {
+        res.sendStatus(400);
+        return;
+      } catch (err) {
+        console.log(err);
+        //Nothing
+      }
+    });
+  });
+
   //fetch("http://localhost:3200/api/login", {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username: "Username1",password: "1234"})});
   app.post("/api/user/login", function (req, res) {
     var user = req.body;

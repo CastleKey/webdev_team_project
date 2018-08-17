@@ -9,9 +9,12 @@ import {UserService} from "../services/user.service";
 })
 export class AdminComponent implements OnInit {
 
-  //username: String;
-  //password: String;
+  username: String;
+  password: String;
   err;
+
+  errMatch;
+  errReg;
 
   users = []
 
@@ -32,6 +35,21 @@ export class AdminComponent implements OnInit {
     this.userService.deleteUser(user.username).then((users) => {
       this.getUsers();
     });
+  }
+
+  createUser(username, password) {
+    this.errMatch = false;
+    this.errReg = false;
+    const user = {
+      username: username,
+      password: password,
+    };
+    this.userService.createUser(user)
+        .then(u => {
+          this.userService.update(u);
+          this.getUsers();
+        })
+        .catch(e => this.errReg = true);
   }
 
 }

@@ -1,42 +1,63 @@
 
 <div class="container">
-  <h1>Admin Table</h1>
+  <h1 class="display-4">Admin Table</h1>
   <div class="table-responsive">
-    <table id="admin_table" class="table-striped">
-      <thead>
+    <table id="admin_table" class="table">
+      <thead class="thead-light">
         <tr class="table">
-          <th>Username</th>
-          <th>Email</th>
-          <th>&nbsp;</th>
+          <th scope="col">Username</th>
+          <th scope="col">Password</th>
+          <th scope="col">Role</th>
+          <th scope="col">&nbsp;</th>
+          <th scope="col">&nbsp;</th>
         </tr>
+      </thead>
+      <tbody>
         <tr class="table">
 
-          <th><input type="text" class="form-control" placeholder="username" id="username" /></th>
+          <th><input type="text" class="form-control" placeholder="username" id="username" [(ngModel)]="username" /></th>
 
-          <th><input type="text" class="form-control" placeholder="email" id="email" /></th>
+          <th><input type="text" class="form-control" placeholder="password" id="password" [(ngModel)]="password" /></th>
+
+          <th>
+            <select class="form-control" id='role'>
+              <option value="REGULAR">
+                Regular
+              </option>
+              <option value="STORE">
+                Store
+              </option>
+              <option value="CURATOR">
+                Curator
+              </option>
+              <option value="ADMIN">
+                Admin
+              </option>
+            </select>
+          </th>
 
           <th>
             <button type="button" class="btn btn-primary" id='updateBtn'>Update</button>
-            <button type="button" class="btn btn-success" id='createBtn'>Create</button>
+          </th>
+
+          <th>
+            <button type="button" class="btn btn-success" id='createBtn' (click)="createUser(username, password)">Create</button>
           </th>
         </tr>
-
-      </thead>
-      <tbody>
       </tbody>
+
       <tfoot>
       </tfoot>
-
     </table>
   </div>
   <ul class="list-group">
     <li class="list-group-item"
         *ngFor="let user of users">
       <div class="row">
-        <h4 class="col">Username: {{user.username}}</h4>
+        <h5 class="col">Username: {{user.username}}</h5>
         <div class="col-xs-1">
           <button class="btn btn-danger btn-block float-right"
-                  (click)="deleteUser(user)">
+                  (click)="deleteUser(user)">Delete User
             <span class="fa fa-close"></span>
           </button>
         </div>

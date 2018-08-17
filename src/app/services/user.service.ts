@@ -42,6 +42,17 @@ export class UserService {
     }).then(response => response.json());
   }
 
+  createUser(user) {
+    return fetch(this.url + '/api/user/createUser', {
+      method: 'post',
+      credentials: 'include',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(user)
+    }).then(response => response.json());
+  }
+
   currentUser() {
     return fetch(this.url + '/api/user/profile', {
       method: 'get',
@@ -86,13 +97,6 @@ export class UserService {
     });
   }
   */
-
-  // deleteReview(reviewId) {
-  //   return fetch(this.url + '/api/review/' + reviewId, {
-  //     method: 'DELETE',
-  //     credentials: 'include'
-  //   }).then(response => response.json());
-  // }
 
   deleteUser(username) {
     return fetch(this.url + '/api/user/' + username, {
