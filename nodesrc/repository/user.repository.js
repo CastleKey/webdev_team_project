@@ -22,7 +22,7 @@ upsertUser = (user) => {
 
 updateUser = (id, user) => {
   return userModel.findByIdAndUpdate(id, 
-                                     {$set: {email: user.email}}, 
+                                     {$set: {email: user.email, address: user.address}}, 
                                      {new:true}).exec();
 }
 

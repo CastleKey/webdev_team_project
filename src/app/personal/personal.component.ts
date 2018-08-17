@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router, ActivatedRoute} from "@angular/router";
+import { DomSanitizer} from '@angular/platform-browser';
 
 import {UserService} from "../services/user.service";
 import {ReviewService} from "../services/review.service";
@@ -23,7 +24,8 @@ export class PersonalComponent implements OnInit {
               private route: ActivatedRoute,
               private userService: UserService,
               private reviewService: ReviewService,
-              private followService: FollowService) { }
+              private followService: FollowService,
+              private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
@@ -39,7 +41,11 @@ export class PersonalComponent implements OnInit {
       });
     });
   }
-  
+  /**
+  getSantizeUrl(address : string) {
+    return this.sanitizer.bypassSecurityTrustResourceUrl("https://www.google.com/maps/embed/v1/place?q=" + address + "&key=AIzaSyCzGsF-XfDYYh04BnIuVFJTIpsgZv8b4bQ");
+  }
+  */
   getReview() {
     this.reviewService.findReviewByUser(this.user._id).then((reviews) => {
       this.reviews = reviews;
