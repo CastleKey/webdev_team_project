@@ -66,18 +66,30 @@ module.exports = (app) => {
     }
     var review = req.body;
     reviewRepo.findReview(req.params["reviewId"]).then((dbReview) => {
+      if (req.session["user"].role == "ADMIN" || req.session["user"].role == "CURATOR") {
+        reviewRepo.updateReview(req.params["reviewId"], review)
+        .then((dbReview) => {
+          if (dbReview === null) {
+            res.sendStatus(400);
+            return;
+          }
+          res.json(dbReview);
+        });
+        return;
+      }
       if (dbReview.user != req.session["user"]._id) {
         res.sendStatus(400);
         return;
       }
+      review.starLit = dbReview.starLit;
       reviewRepo.updateReview(req.params["reviewId"], review)
-          .then((dbReview) => {
-            if (dbReview === null) {
-              res.sendStatus(400);
-              return;
-            }
-            res.json(dbReview);
-          });
+      .then((dbReview) => {
+        if (dbReview === null) {
+          res.sendStatus(400);
+          return;
+        }
+        res.json(dbReview);
+      });
     });
   });
   
