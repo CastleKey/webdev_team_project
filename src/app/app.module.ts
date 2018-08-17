@@ -11,6 +11,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
+import { AdminComponent } from './admin/admin.component';
 import { SearchUserComponent } from './search-user/search-user.component';
 import { PersonalComponent } from './personal/personal.component';
 import { ReviewCardComponent } from './review-card/review-card.component';
@@ -26,6 +27,7 @@ import { AboutComponent } from './about/about.component';
     LoginComponent,
     RegisterComponent,
     ProfileComponent,
+    AdminComponent,
     SearchUserComponent,
     PersonalComponent,
     ReviewCardComponent,

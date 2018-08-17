@@ -7,12 +7,12 @@ export class UserService {
 
   url = "";
 
-  constructor() { 
+  constructor() {
     if (window.location.port == "4200") {
       this.url = "http://localhost:3000"
     }
   }
-  
+
   login(user) {
     return fetch(this.url + '/api/user/login', {
       method: 'post',
@@ -23,16 +23,27 @@ export class UserService {
       body: JSON.stringify(user)
     }).then(response => response.json());
   }
-  
+
   logout() {
     return fetch(this.url + '/api/user/logout', {
       method: 'post',
       credentials: 'include'
     });
   }
-  
+
   register(user) {
     return fetch(this.url + '/api/user/register', {
+      method: 'post',
+      credentials: 'include',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(user)
+    }).then(response => response.json());
+  }
+
+  createUser(user) {
+    return fetch(this.url + '/api/user/createUser', {
       method: 'post',
       credentials: 'include',
       headers: {
@@ -48,7 +59,14 @@ export class UserService {
       credentials: 'include'
     }).then(response => response.json())
   }
-  
+
+  findAllUsers() {
+    return fetch(this.url + '/api/user/findusers', {
+      method: 'get',
+      credentials: 'include'
+    }).then(response => response.json())
+  }
+
   updateUser(user) {
     return fetch(this.url + '/api/user/profile', {
       method: 'PUT',
@@ -59,7 +77,18 @@ export class UserService {
       body: JSON.stringify(user)
     }).then(response => response.json());
   }
-  
+
+  adminUpdateUser(user) {
+    return fetch(this.url + '/api/user/updateUser', {
+      method: 'PUT',
+      credentials: 'include',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(user)
+    }).then(response => response.json());
+  }
+
   updatePassword(password) {
     return fetch(this.url + '/api/user/updatePassword', {
       method: 'PUT',
@@ -70,15 +99,13 @@ export class UserService {
       body: JSON.stringify({password:password})
     }).then(response => response.json());
   }
-  
-  /**
-  deleteUser() {
-    return fetch(this.url + '/api/profile', {
+
+  deleteUser(username) {
+    return fetch(this.url + '/api/user/' + username, {
       method: 'DELETE',
       credentials: 'include'
-    });
+    }).then(response => response.json());
   }
-  */
   
   searchUser(q) {
     return fetch(this.url + '/api/user/search?q=' + q).then(response => response.json());
@@ -89,11 +116,11 @@ export class UserService {
   }
   
   listeners = [];
-  
+
   subscribe(fun) {
     this.listeners.push(fun);
   }
-  
+
   update(user) {
     if (user._id == undefined || user._id == null){
       user = null;

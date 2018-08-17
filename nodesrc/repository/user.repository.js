@@ -12,6 +12,14 @@ findUserByNameAndPassword = (username, password) => {
   return userModel.findOne({username: username, password: password});
 }
 
+findUserByName = (username) => {
+  return userModel.findOne({username: username});
+}
+
+deleteUser = (username) => {
+  return userModel.deleteOne({username: username}).exec();
+}
+
 saveUser = (user) => {
   return userModel(user).save();
 }
@@ -21,14 +29,20 @@ upsertUser = (user) => {
 }
 
 updateUser = (id, user) => {
-  return userModel.findByIdAndUpdate(id, 
-                                     {$set: {email: user.email, address: user.address}}, 
+  return userModel.findByIdAndUpdate(id,
+                                     {$set: {email: user.email, address: user.address}},
+                                     {new:true}).exec();
+}
+
+adminUpdateUser = (id, user) => {
+  return userModel.findByIdAndUpdate(id,
+                                     {$set: {role: user.role}},
                                      {new:true}).exec();
 }
 
 updateUserPassword = (id, password) => {
-  return userModel.findByIdAndUpdate(id, 
-                                     {$set: {password: password}}, 
+  return userModel.findByIdAndUpdate(id,
+                                     {$set: {password: password}},
                                      {new:true}).exec();
 }
 
@@ -62,12 +76,15 @@ searchUsersByName = (q) => {
 
 module.exports = {
   findAllUsers,
-  findUser, 
+  findUser,
   findUserByNameAndPassword,
+  findUserByName,
+  deleteUser,
   saveUser,
   saveUsers,
   upsertUser,
   updateUser,
+  adminUpdateUser,
   updateUserPassword,
   upsertUsers,
   searchUsersByName,
