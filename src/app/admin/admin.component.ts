@@ -47,7 +47,7 @@ export class AdminComponent implements OnInit {
     };
     this.userService.adminUpdateUser(user)
         .then(u => {
-          this.userService.update(u);
+          //this.userService.update(u);
           this.getUsers();
         })
         .catch(e => this.errReg = true);
@@ -63,7 +63,7 @@ export class AdminComponent implements OnInit {
     };
     this.userService.createUser(user)
         .then(u => {
-          this.userService.update(u);
+          //this.userService.update(u);
           this.getUsers();
         })
         .catch(e => this.errReg = true);

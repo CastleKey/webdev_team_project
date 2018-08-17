@@ -36,7 +36,7 @@ updateUser = (id, user) => {
 
 adminUpdateUser = (id, user) => {
   return userModel.findByIdAndUpdate(id,
-                                     {$set: {password: user.password, role: user.role}},
+                                     {$set: {role: user.role}},
                                      {new:true}).exec();
 }
 

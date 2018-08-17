@@ -79,7 +79,7 @@ module.exports = (app) => {
         .digest('hex'))
       .then((dbUser) => {
         if (dbUser == null) {
-          res.sendStatus(400);
+          res.sendStatus(411);
           return;
         }
         req.session["user"] = dbUser;
@@ -87,7 +87,7 @@ module.exports = (app) => {
       }).catch((err) => {
         console.log(err);
         try {
-          res.sendStatus(400);
+          res.sendStatus(422);
           return;
         } catch (err) {
           console.log(err);

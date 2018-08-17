@@ -25,18 +25,18 @@
                Sign up
           </a>
         </li>
-        <li class="nav-item" *ngIf="user === null">
-          <a class="nav-link"
-             routerLink="/admin">
-               Admin
-          </a>
-        </li>
-        <!-- <li class="nav-item" *ngIf="user !== null && user.role == 'ADMIN'">
+        <!-- <li class="nav-item" *ngIf="user === null">
           <a class="nav-link"
              routerLink="/admin">
                Admin
           </a>
         </li> -->
+        <li class="nav-item" *ngIf="user !== null && user.role == 'ADMIN'">
+          <a class="nav-link"
+             routerLink="/admin">
+               Admin
+          </a>
+        </li>
       </ul>
       <a *ngIf="user !== null" routerLink="/profile">{{user.username}}'s Profile</a>
     </div>
