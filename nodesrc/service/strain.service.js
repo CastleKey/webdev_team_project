@@ -95,56 +95,10 @@ module.exports = app => {
         loadExternal(req.params['sname'], true, (err, loS) => {
           if (err) {
             res.status(400).send(loS);
+            return;
           }
           res.json(loS);
         });
-      /**
-        makeReq(url + "/strains/search/name/" + req.params['sname'], (strains) => {
-          var firstTime = {first: true};
-          if (strains.length == 0) {
-            res.sendStatus(400);
-            return;
-          }
-          res.json(strains.map((str) => {
-            return str.name;
-          }));
-          strains.forEach((str) => {
-            strainRepo.findStrain(str.name).then((err, dbStr) => {
-              if (err || dbStr == null) {
-                makeReq(url + "/strains/data/effects/" + str.id, (eff) => { 
-                  return ((eff, firstTime) => {
-                    makeReq(url + "/strains/data/flavors/" + str.id, (fla) => { 
-                      return ((fla, firstTime) => {
-                        var first = false;
-                        if (firstTime.first == true) {
-                          firstTime.first = false;
-                          first = true;
-                        }
-                        var obj = {};
-                        obj._id = str.name;
-                        obj.eb_id = str.id;
-                        obj.race = str.race.toUpperCase();
-                        obj.desc = str.desc;
-                        obj.effects = eff.positive.concat(
-                                      eff.negative.concat(
-                                      eff.medical)).map((eff) => {
-                          return eff.toString();
-                        });
-                        obj.flavors = fla.map((fla) => {
-                          return fla.toString();
-                        });
-                        strainRepo.upsertStrain(obj).then((dbObj) => {
-                          //nothing needed to be done
-                        });
-                      })(fla, firstTime)
-                    });
-                  })(eff, firstTime)
-                });
-              }
-            });
-          });
-          //res.json(strain);
-        });*/
         return;
       }
       res.json(strain.map((strain) => {
@@ -160,56 +114,10 @@ module.exports = app => {
         loadExternal(req.params['sname'], false, (err, str) => {
           if (err) {
             res.status(400).send(str);
+            return;
           }
           res.json(str);
         });
-      /**
-        makeReq(url + "/strains/search/name/" + req.params['sname'], (strains) => {
-          var firstTime = {first: true};
-          if (strains.length == 0) {
-            res.sendStatus(400);
-            return;
-          }
-          strains.forEach((str) => {
-            strainRepo.findStrain(str.name).then((err, dbStr) => {
-              if (err || dbStr == null) {
-                makeReq(url + "/strains/data/effects/" + str.id, (eff) => { 
-                  return ((eff, firstTime) => {
-                    makeReq(url + "/strains/data/flavors/" + str.id, (fla) => { 
-                      return ((fla, firstTime) => {
-                        var first = false;
-                        if (firstTime.first == true) {
-                          firstTime.first = false;
-                          first = true;
-                        }
-                        var obj = {};
-                        obj._id = str.name;
-                        obj.eb_id = str.id;
-                        obj.race = str.race.toUpperCase();
-                        obj.desc = str.desc;
-                        obj.effects = eff.positive.concat(
-                                      eff.negative.concat(
-                                      eff.medical)).map((eff) => {
-                          return eff.toString();
-                        });
-                        obj.flavors = fla.map((fla) => {
-                          return fla.toString();
-                        });
-                        strainRepo.upsertStrain(obj).then((dbObj) => {
-                          if (first) {
-                            res.json(dbObj);
-                          }
-                        });
-                      })(fla, firstTime)
-                    });
-                  })(eff, firstTime)
-                });
-              }
-            });
-          });
-          //res.json(strain);
-        });
-        */
         return;
       }
       res.json(strain);

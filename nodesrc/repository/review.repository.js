@@ -20,7 +20,8 @@ upsertReview = (review) => {
 updateReview = (id, review) => {
   return reviewModel.findByIdAndUpdate(id, 
                                      {$set: {star: review.star,
-                                             desc: review.desc}}, 
+                                             desc: review.desc,
+                                             starLit: review.starLit}}, 
                                      {new:true}).exec();
 }
 
@@ -40,6 +41,10 @@ searchReviewsByUser = (userId) => {
   return reviewModel.find({user: userId});
 }
 
+searchReviewsByUsers = (loUser) => {
+  return reviewModel.find({user: {$in: loUser}});
+}
+
 searchReviewsByStrain = (strainName) => {
   return reviewModel.find({strain: strainName});
 }
@@ -57,6 +62,7 @@ module.exports = {
   updateReview,
   upsertReviews,
   searchReviewsByUser,
+  searchReviewsByUsers,
   searchReviewsByStrain,
   deleteReview
 }

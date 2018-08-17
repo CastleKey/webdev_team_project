@@ -1,0 +1,28 @@
+<li class="list-group-item">
+  <div class="row">
+    <h4 class="col mb-1">
+      <span (click)="goToStrain()">{{review.strain}}</span>
+      <span *ngIf="user && (user.role == 'CURATOR' || user.role == 'ADMIN')"
+            class="border rounded px-2 ml-2">
+        <input type="checkbox"
+               class=""
+               id="starLitFld"
+               [(ngModel)]="review.starLit"
+               (click)="updateStarLit()"
+               /><small><label for="starLitFld" class="ml-2">Star Lit?</label></small>
+      </span>
+    </h4>
+    <div class="col-xs-1">
+      <button class="btn btn-danger btn-block float-right"
+              *ngIf="deletable != false"
+              (click)="deleteReview(review)">
+        <span class="fa fa-close"></span>
+      </button>
+    </div>
+  </div>
+  <small class="ml-3" *ngIf="review.user.username" (click)="goToUser(review.user._id)">{{review.user.username}}</small>
+  <small class="ml-3" *ngIf="!review.user.username" (click)="goToUser(review.user)">Go To User</small>
+    <i *ngIf="review.starLit" class="float-right fa fa-star fa-3x text-warning"></i>
+  <h5 class="">Score: {{review.star}}/5</h5>
+  <p class="ml-4">{{review.desc}}</p>
+</li>

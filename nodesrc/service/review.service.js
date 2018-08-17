@@ -30,7 +30,7 @@ module.exports = (app) => {
   });
 
   app.get("/api/review/user/:userId", function (req, res) {
-    reviewRepo.searchReviewsByUser(req.params["userId"]).then((dbReview) => {
+    reviewRepo.searchReviewsByUser(req.params["userId"]).populate("user").then((dbReview) => {
       if (dbReview == null) {
         res.sendStatus(400);
         return;
@@ -40,7 +40,7 @@ module.exports = (app) => {
   });
 
   app.get("/api/review/strain/:strainId", function (req, res) {
-    reviewRepo.searchReviewsByStrain(req.params["strainId"]).then((dbReview) => {
+    reviewRepo.searchReviewsByStrain(req.params["strainId"]).populate("user").then((dbReview) => {
       if (dbReview == null) {
         res.sendStatus(400);
         return;
@@ -50,7 +50,7 @@ module.exports = (app) => {
   });
 
   app.get("/api/review/:reviewId", function (req, res) {
-    reviewRepo.findReview(req.params["reviewId"]).then((dbReview) => {
+    reviewRepo.findReview(req.params["reviewId"]).populate("user").then((dbReview) => {
       if (dbReview == null) {
         res.sendStatus(400);
         return;
@@ -66,18 +66,30 @@ module.exports = (app) => {
     }
     var review = req.body;
     reviewRepo.findReview(req.params["reviewId"]).then((dbReview) => {
+      if (req.session["user"].role == "ADMIN" || req.session["user"].role == "CURATOR") {
+        reviewRepo.updateReview(req.params["reviewId"], review)
+        .then((dbReview) => {
+          if (dbReview === null) {
+            res.sendStatus(400);
+            return;
+          }
+          res.json(dbReview);
+        });
+        return;
+      }
       if (dbReview.user != req.session["user"]._id) {
         res.sendStatus(400);
         return;
       }
+      review.starLit = dbReview.starLit;
       reviewRepo.updateReview(req.params["reviewId"], review)
-          .then((dbReview) => {
-            if (dbReview === null) {
-              res.sendStatus(400);
-              return;
-            }
-            res.json(dbReview);
-          });
+      .then((dbReview) => {
+        if (dbReview === null) {
+          res.sendStatus(400);
+          return;
+        }
+        res.json(dbReview);
+      });
     });
   });
   

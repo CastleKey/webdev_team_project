@@ -66,6 +66,12 @@ export class ProfileComponent implements OnInit {
       this.reviews = reviews;
     });
   }
+  
+  onDeleted(deleted : boolean) {
+    if (deleted) {
+      this.getReview();
+    }
+  }
 
   deleteReview(review) {
     this.reviewService.deleteReview(review._id).then((reviews) => {

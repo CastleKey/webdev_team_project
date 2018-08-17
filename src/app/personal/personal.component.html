@@ -1,0 +1,30 @@
+<div class="container" *ngIf="user">
+	<div class="text-center mb-4">
+    	<h1>{{user.username}}</h1>
+  </div>
+  <div *ngIf="user.role == 'STORE'">
+  Address: <a href="http://maps.google.com/?q={{user.address}}">{{user.address}}</a>
+  <div className="row">
+  <!--<iframe height="200" frameborder="0" style="border:0" [src]="getSantizeUrl(user.address)" allowfullscreen></iframe>-->
+  </div>
+  </div>
+  <h1>
+    Reviews  
+    <div class="float-right" *ngIf="loggedUser != null && user._id != loggedUser._id && !disabled && followed">
+      <button id="unFollowBtn" 
+              class="btn btn-caution"
+              (click)="unfollow()">unFollow</button>
+    </div>
+    <div class="float-right" *ngIf="loggedUser != null && user._id != loggedUser._id && !disabled && !followed">
+      <button id="followBtn" 
+              class="btn btn-success"
+              (click)="follow()">Follow</button>
+    </div>
+  </h1>
+  <ul class="list-group">
+    <p class="ml-2" *ngIf="reviews.length === 0">Nothing here yet.</p>
+    <div *ngFor="let review of reviews">
+      <app-review-card [review]="review" [user]="loggedUser"></app-review-card>
+    </div>
+  </ul>
+</div>

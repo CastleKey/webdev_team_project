@@ -106,7 +106,15 @@ export class UserService {
       credentials: 'include'
     }).then(response => response.json());
   }
-
+  
+  searchUser(q) {
+    return fetch(this.url + '/api/user/search?q=' + q).then(response => response.json());
+  }
+  
+  getUser(userId) {
+    return fetch(this.url + '/api/user/profile/' + userId).then(response => response.json());
+  }
+  
   listeners = [];
 
   subscribe(fun) {

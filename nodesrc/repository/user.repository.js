@@ -4,8 +4,8 @@ findAllUsers = () => {
   return userModel.find();
 }
 
-findUser = (name) => {
-  return userModel.findById(name);
+findUser = (id) => {
+  return userModel.findById(id);
 }
 
 findUserByNameAndPassword = (username, password) => {
@@ -30,7 +30,7 @@ upsertUser = (user) => {
 
 updateUser = (id, user) => {
   return userModel.findByIdAndUpdate(id,
-                                     {$set: {email: user.email}},
+                                     {$set: {email: user.email, address: user.address}},
                                      {new:true}).exec();
 }
 
@@ -43,6 +43,18 @@ adminUpdateUser = (id, user) => {
 updateUserPassword = (id, password) => {
   return userModel.findByIdAndUpdate(id,
                                      {$set: {password: password}},
+                                     {new:true}).exec();
+}
+
+addUserFollowing = (id, otherUserId) => {
+  return userModel.findByIdAndUpdate(id, 
+                                     {$push: {follows: otherUserId}}, 
+                                     {new:true}).exec();
+}
+
+removeUserFollowing = (id, otherUserId) => {
+  return userModel.findByIdAndUpdate(id, 
+                                     {$pull: {follows: otherUserId}}, 
                                      {new:true}).exec();
 }
 
@@ -59,7 +71,7 @@ upsertUsers = (users) => {
 }
 
 searchUsersByName = (q) => {
-  return users.find({_id: new RegExp('^'+q+'$', "i")})
+  return userModel.find({username: new RegExp(q, "i")});
 }
 
 module.exports = {
@@ -75,5 +87,7 @@ module.exports = {
   adminUpdateUser,
   updateUserPassword,
   upsertUsers,
-  searchUsersByName
+  searchUsersByName,
+  addUserFollowing,
+  removeUserFollowing
 }
