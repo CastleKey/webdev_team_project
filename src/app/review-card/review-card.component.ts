@@ -26,8 +26,8 @@ export class ReviewCardComponent implements OnInit {
     this.router.navigate(["strain", this.review.strain]);
   }
   
-  goToUser() {
-    this.router.navigate(["profile", this.review.user]);
+  goToUser(str) {
+    this.router.navigate(["profile", str]);
   }
 
   deleteReview(review) {

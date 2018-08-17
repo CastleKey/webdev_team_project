@@ -45,7 +45,7 @@ module.exports = (app) => {
   
   app.get("/api/follow/stream/:userId", function (req, res) {
     userRepo.findUser(req.params["userId"]).then((user) => {
-      reviewRepo.searchReviewsByUsers(user.follows)
+      reviewRepo.searchReviewsByUsers(user.follows).populate("user")
           .sort([['date', -1]]).limit(20).then((reviews) => {
         res.send(reviews);
       });
@@ -53,7 +53,7 @@ module.exports = (app) => {
   })
   
   app.get("/api/follow/stream", function (req, res) {
-    reviewRepo.findAllReviews().sort([['date', -1]]).limit(20).then((reviews) => {
+    reviewRepo.findAllReviews().sort([['date', -1]]).limit(20).populate("user").then((reviews) => {
       res.send(reviews);
     });
   })

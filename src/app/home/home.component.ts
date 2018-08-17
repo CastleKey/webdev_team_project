@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit {
   
   user = null;
   reviews = [];
+  follows = [];
 
   constructor(private router: Router,
               private route: ActivatedRoute,
@@ -31,6 +32,9 @@ export class HomeComponent implements OnInit {
       } else {
         this.followService.getUserReviewStream(user._id).then((reviews) => {
           this.reviews = reviews;
+          this.followService.getFollows(user._id).then((follows) => {
+            this.follows = follows;
+          })
         });
       }
     }).catch(() => {
@@ -38,6 +42,10 @@ export class HomeComponent implements OnInit {
         this.reviews = reviews;
       });
     });
+  }
+  
+  goToUser(userId) {
+    this.router.navigate(["profile", userId]);
   }
 
 }

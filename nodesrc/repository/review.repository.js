@@ -41,7 +41,7 @@ searchReviewsByUser = (userId) => {
 }
 
 searchReviewsByUsers = (loUser) => {
-  return reviewModel.find({_id: {$in: loUser}});
+  return reviewModel.find({user: {$in: loUser}});
 }
 
 searchReviewsByStrain = (strainName) => {
