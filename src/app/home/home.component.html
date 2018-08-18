@@ -1,10 +1,10 @@
-<div class="container">
-  <h1>Welcome to this site</h1>
-  
+<div class="container" id="wbdv-page">
+  <h1 class="display-4">Welcome to Mara</h1>
+
   <div *ngIf="user">
-    <h3>Following</h3>
+    <h3 class="display-5">Following:</h3>
     <ul class="list-group">
-      <p class="ml-4" *ngIf="follows.length === 0">Nothing here yet.</p>
+      <p class="ml-4" *ngIf="follows.length === 0">Follow a user for them to appear here.</p>
       <div *ngFor="let follow of follows">
         <li class="list-group-item"
             (click)="goToUser(follow._id)">
@@ -13,10 +13,10 @@
       </div>
     </ul>
   </div>
-  
-  <h3>Reviews</h3>
+
+  <h3 class="display-5">Reviews:</h3>
   <ul class="list-group">
-    <p class="ml-4" *ngIf="reviews.length === 0">Nothing here yet.</p>
+    <p class="ml-4" *ngIf="reviews.length === 0">Review a strain for it to appear here.</p>
     <div *ngFor="let review of reviews">
       <app-review-card [review]="review"></app-review-card>
     </div>

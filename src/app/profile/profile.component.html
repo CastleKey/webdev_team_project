@@ -1,9 +1,9 @@
 <div class="container" id="wbdv-page">
-	<div class="text-center mb-4">
-    	<h1>Profile</h1>
+	<div class="mb-4">
+    	<h1 class="display-4">Profile</h1>
     </div>
   <div class="alert alert-warning" id="wbdv-error" *ngIf="err">
-  	<strong>Warning!</strong> Error updating profile. Try 
+  	<strong>Warning!</strong> Error updating profile. Try
   	<a routerLink="/login">loggining</a> in again?
   </div>
 	<div class="form-horizontal" *ngIf="user">
@@ -32,7 +32,7 @@
                  class="form-control"
                  [(ngModel)]="newPass" />
           <span class="input-group-btn">
-            <button id="updatePassBtn" 
+            <button id="updatePassBtn"
                     class="btn btn-danger ml-2"
                     (click)="updatePassword()">
                 Update
@@ -72,9 +72,9 @@
             Role
         </label>
         <div class="">
-          <select id="roleFld" 
-                  class="form-control" 
-                  [(ngModel)]="user.role" 
+          <select id="roleFld"
+                  class="form-control"
+                  [(ngModel)]="user.role"
                   disabled >
       			<option value="REGULAR">User</option>
       			<option value="STORE">Store</option>
@@ -84,12 +84,12 @@
 			</div>
     </div>
     <div class="">
-      <button id="updateBtn" 
+      <button id="updateBtn"
               class="btn btn-lg btn-danger btn-block"
               (click)="update()">
           Update
       </button>
-      <button id="logoutBtn" 
+      <button id="logoutBtn"
               class="btn btn-lg btn-warning btn-block"
               (click)="logout()">
           Logout
