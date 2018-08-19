@@ -6,10 +6,10 @@
             class="border rounded px-2 ml-2">
         <input type="checkbox"
                class=""
-               id="starLitFld"
+               id="starLitFld{{review._id}}"
                [(ngModel)]="review.starLit"
                (click)="updateStarLit()"
-               /><small><label for="starLitFld" class="ml-2">Star Lit?</label></small>
+               /><small><label for="starLitFld{{review._id}}" class="ml-2">Star Lit?</label></small>
       </span>
     </h4>
     <div class="col-xs-1">
