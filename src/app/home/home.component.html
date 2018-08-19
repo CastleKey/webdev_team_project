@@ -14,9 +14,9 @@
     </ul>
   </div>
 
-  <h3 class="display-5">Reviews:</h3>
+  <h3 class="display-5">Followed Reviews:</h3>
   <ul class="list-group">
-    <p class="ml-4" *ngIf="reviews.length === 0">Review a strain for it to appear here.</p>
+    <p class="ml-4" *ngIf="reviews.length === 0">Follow a user to have their reviews show up here.</p>
     <div *ngFor="let review of reviews">
       <app-review-card [review]="review"></app-review-card>
     </div>
