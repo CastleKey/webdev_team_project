@@ -25,12 +25,14 @@
       </li>
     </ul>
   </div>
-  <div class="rounded border container mt-2">
+</div>
+</div>
+  <div class="rounded border container mt-3" id="post-review-form">
     <div class="form-horizontal">
-      <h4 id="post-title">Post Review</h4>
+      <h4 class="display-4" id="post-title">Post Review</h4>
       <div class="form-group">
           <label class="control-label" for="ratingFld">
-              Score
+              Score out of 5
           </label>
           <div class="">
             <input type="number"
@@ -45,11 +47,11 @@
 
       <div class="form-group">
           <label class="control-label" for="descFld">
-              Text
+              Comments
           </label>
           <div class="">
             <textarea type="text"
-                   placeholder="Text"
+                   placeholder="Write your review here."
                    id="descFld"
                    class="form-control"
                    [(ngModel)]="descFld"></textarea>
@@ -57,7 +59,7 @@
       </div>
     </div>
 
-    <div class="form-group">
+    <!-- <div class="form-group">
       <label class="control-label" for="descFld">
         Comments
       </label>
@@ -68,7 +70,7 @@
         class="form-control"
         [(ngModel)]="descFld"></textarea>
       </div>
-    </div>
+    </div> -->
 
     <div class="mb-2">
       <button id="loginBtn"
@@ -77,7 +79,6 @@
       Post
     </button>
   </div>
-</div>
 </div>
 <h4 class="display-4" id="review-title">Reviews</h4>
 <ul class="list-group">
