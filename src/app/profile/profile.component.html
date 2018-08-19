@@ -1,13 +1,14 @@
 <div class="container" id="wbdv-page">
+	<div class="form-horizontal border rounded px-3" *ngIf="user" id="profile_form">
 	<div class="mb-4">
     	<h1 class="display-4">Profile</h1>
     </div>
   <div class="alert alert-warning" id="wbdv-error" *ngIf="err">
   	<strong>Warning!</strong> Error updating profile. Try
-  	<a routerLink="/login">loggining</a> in again?
+  	<a routerLink="/login">logging</a> in again?
   </div>
-	<div class="form-horizontal" *ngIf="user">
-    <div class="form-group">
+
+    <div class="form-group" id="top-form">
         <label class="control-label" for="usernameFld">
             Username
         </label>
@@ -27,7 +28,7 @@
         </label>
         <div class="input-group">
           <input type="password"
-                 placeholder="password"
+                 placeholder="Password"
                  id="passwordFld"
                  class="form-control"
                  [(ngModel)]="newPass" />
@@ -85,9 +86,9 @@
     </div>
     <div class="">
       <button id="updateBtn"
-              class="btn btn-lg btn-danger btn-block"
+              class="btn btn-lg btn-info btn-block"
               (click)="update()">
-          Update
+          Update non-password fields
       </button>
       <button id="logoutBtn"
               class="btn btn-lg btn-warning btn-block"
@@ -96,7 +97,7 @@
       </button>
     </div>
   </div>
-  <h1 id="review-title">Reviews</h1>
+  <h1 class="display-4" id="review-title">Reviews</h1>
   <ul class="list-group">
     <p class="ml-4" *ngIf="reviews.length === 0">Nothing here yet.</p>
     <div *ngFor="let review of reviews">

@@ -1,7 +1,34 @@
 #wbdv-page{
   margin-bottom: 30px;
+  /* -webkit-box-shadow: 0 8px 6px -6px #999;
+  -moz-box-shadow: 0 8px 6px -6px #999;
+  box-shadow: 0 8px 6px -6px #999; */
 }
 
 #review-title{
   margin-top: 30px
+}
+
+#profile_form{
+  -moz-box-shadow:    inset 0 0 7px #999;
+  -webkit-box-shadow: inset 0 0 7px #999;
+  box-shadow:         inset 0 0 7px #999;
+  /* -webkit-box-shadow: 0 8px 6px -6px #999;
+  -moz-box-shadow: 0 8px 6px -6px #999;
+  box-shadow: 0 8px 6px -6px #999; */
+}
+
+button {
+  -webkit-box-shadow: 0 8px 6px -6px #999;
+  -moz-box-shadow: 0 8px 6px -6px #999;
+  box-shadow: 0 8px 6px -6px #999;
+}
+
+#top-form{
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+#logoutBtn{
+  margin-bottom: 20px;
 }

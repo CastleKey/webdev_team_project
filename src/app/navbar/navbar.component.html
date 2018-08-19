@@ -1,7 +1,11 @@
-<nav class="navbar navbar-expand-lg navbar-light
-                      rounded mb-4" style="background-color: #b2e7ad;">
+<nav class="navbar fixed-top navbar-expand-lg navbar-light
+                      mb-4" style="background-color: #b2e7ad;" id="navbar">
   <div class="container">
-    <a class="navbar-brand" routerLink="/">Mara</a>
+    <div>
+      <img src="https://purepng.com/public/uploads/large/purepng.com-orangeorangefruitfoodtastydeliciousorangecolor-331522582560lu0u4.png" class="img-fluid" style="width:35px;height:25px;">
+      <a class="navbar-brand" routerLink="/">Mara</a>
+    </div>
+
     <button class="navbar-toggler"
             type="button"
             data-toggle="collapse"
@@ -11,13 +15,12 @@
             aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="courseManagerNavFields">
-      <!-- <ul class="navbar-nav mr-auto mt-2 mt-lg-0"> -->
-      <ul class="navbar-nav justify-content-center">
+    <div class="collapse navbar-collapse navbar-center" id="courseManagerNavFields">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0" data-target=".navbar-collapse" data-toggle="collapse">
         <li class="nav-item">
           <a class="nav-link"
              routerLink="/search/user">
-               Search User
+               Search Users
           </a>
         </li>
         <li class="nav-item" *ngIf="user === null">
@@ -35,7 +38,7 @@
         <li class="nav-item">
           <a class="nav-link"
              routerLink="/about">
-            About
+               About
           </a>
         </li>
         <li class="nav-item" *ngIf="user !== null && user.role == 'ADMIN'">
@@ -48,7 +51,6 @@
           <a class="nav-link" *ngIf="user !== null" routerLink="/profile">{{user.username}}'s Profile</a>
         </li>
       </ul>
-
     </div>
   </div>
 </nav>
