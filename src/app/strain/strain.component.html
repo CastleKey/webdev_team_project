@@ -25,6 +25,26 @@
       </li>
     </ul>
   </div>
+  <div class="col">
+    <h4><i class="fa fa-lg fa-minus-square text-info"></i> Effects</h4>
+    <p *ngIf="negativeEffect.length == 0">Not known.</p>
+    <ul class="list-group">
+      <li class="list-group-item"
+      *ngFor="let eff of negativeEffect">
+      {{eff._id}}
+    </li>
+  </ul>
+</div>
+<div class="col">
+  <h4><i class="fa fa-lg fa-medkit text-danger"></i> Treats</h4>
+  <p *ngIf="medicalEffect.length == 0">Not known.</p>
+  <ul class="list-group">
+    <li class="list-group-item"
+    *ngFor="let eff of medicalEffect">
+    {{eff._id}}
+  </li>
+</ul>
+</div>
 </div>
 </div>
   <div class="rounded border container mt-3" id="post-review-form">
