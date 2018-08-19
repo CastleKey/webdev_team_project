@@ -25,41 +25,35 @@
       </li>
     </ul>
   </div>
-  <div class="col">
-    <h4><i class="fa fa-lg fa-minus-square text-info"></i> Effects</h4>
-    <p *ngIf="negativeEffect.length == 0">Not known.</p>
-    <ul class="list-group">
-      <li class="list-group-item"
-      *ngFor="let eff of negativeEffect">
-      {{eff._id}}
-    </li>
-  </ul>
-</div>
-<div class="col">
-  <h4><i class="fa fa-lg fa-medkit text-danger"></i> Treats</h4>
-  <p *ngIf="medicalEffect.length == 0">Not known.</p>
-  <ul class="list-group">
-    <li class="list-group-item"
-    *ngFor="let eff of medicalEffect">
-    {{eff._id}}
-  </li>
-</ul>
-</div>
-</div>
-</div>
-<div class="rounded border rounded container mt-3" id="post-review-form">
-  <div class="form-horizontal">
-    <h4 class="display-4" id="post-title">Post Review</h4>
-    <div class="form-group">
-      <label class="control-label" for="ratingFld">
-        Score out of 5
-      </label>
-      <div class="">
-        <input type="number"
-        placeholder="3"
-        id="ratingFld"
-        class="form-control"
-        [(ngModel)]="ratingFld"/>
+  <div class="rounded border container mt-2">
+    <div class="form-horizontal">
+      <h4 id="post-title">Post Review</h4>
+      <div class="form-group">
+          <label class="control-label" for="ratingFld">
+              Score
+          </label>
+          <div class="">
+            <input type="number"
+                   id="ratingFld"
+                   class="form-control"
+                   min="1"
+                   max="5"
+                   step="1"
+                   [(ngModel)]="ratingFld"/>
+          </div>
+      </div>
+
+      <div class="form-group">
+          <label class="control-label" for="descFld">
+              Text
+          </label>
+          <div class="">
+            <textarea type="text"
+                   placeholder="Text"
+                   id="descFld"
+                   class="form-control"
+                   [(ngModel)]="descFld"></textarea>
+          </div>
       </div>
     </div>
 
