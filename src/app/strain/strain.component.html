@@ -54,9 +54,11 @@
           </label>
           <div class="">
             <input type="number"
-                   placeholder="3"
                    id="ratingFld"
                    class="form-control"
+                   min="1"
+                   max="5"
+                   step="1"
                    [(ngModel)]="ratingFld"/>
           </div>
       </div>
