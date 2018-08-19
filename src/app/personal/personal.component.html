@@ -1,6 +1,6 @@
-<div class="container" *ngIf="user">
-	<div class="text-center mb-4">
-    	<h1>{{user.username}}</h1>
+<div class="container" *ngIf="user" id="wbdv-page">
+	<div class="mb-4">
+    	<h1 class="display-4">{{user.username}}</h1>
   </div>
   <div *ngIf="user.role == 'STORE'">
   Address: <a href="http://maps.google.com/?q={{user.address}}">{{user.address}}</a>
@@ -9,14 +9,14 @@
   </div>
   </div>
   <h1>
-    Reviews  
+    Reviews
     <div class="float-right" *ngIf="loggedUser != null && user._id != loggedUser._id && !disabled && followed">
-      <button id="unFollowBtn" 
-              class="btn btn-caution"
-              (click)="unfollow()">unFollow</button>
+      <button id="unFollowBtn"
+              class="btn btn-danger"
+              (click)="unfollow()">Un-Follow</button>
     </div>
     <div class="float-right" *ngIf="loggedUser != null && user._id != loggedUser._id && !disabled && !followed">
-      <button id="followBtn" 
+      <button id="followBtn"
               class="btn btn-success"
               (click)="follow()">Follow</button>
     </div>

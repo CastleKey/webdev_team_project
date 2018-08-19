@@ -1,5 +1,5 @@
-<div *ngIf="strain">
-  <h1>{{strain._id}}</h1>
+<div *ngIf="strain" id="wbdv-page">
+  <h1 class="display-4">{{strain._id}}</h1>
   <small>{{strain.race}}</small>
   <p *ngIf="strain.desc">{{strain.desc}}</p>
   <p *ngIf="!strain.desc">No description avaliable yet. Sorry</p>
@@ -47,7 +47,7 @@
   </div>
   <div class="rounded border container mt-2">
     <div class="form-horizontal">
-      <h4>Post Review</h4>
+      <h4 id="post-title">Post Review</h4>
       <div class="form-group">
           <label class="control-label" for="ratingFld">
               Score
@@ -60,7 +60,7 @@
                    [(ngModel)]="ratingFld"/>
           </div>
       </div>
-      
+
       <div class="form-group">
           <label class="control-label" for="descFld">
               Text
@@ -75,7 +75,7 @@
       </div>
 
       <div class="mb-2">
-        <button id="loginBtn" 
+        <button id="loginBtn"
                 class="btn btn-lg btn-primary btn-block"
                 (click)="postReview()">
             Post
@@ -83,7 +83,7 @@
       </div>
     </div>
   </div>
-  <h4>Reviews</h4>
+  <h4 id="review-title">Reviews</h4>
   <ul class="list-group">
     <p class="ml-4" *ngIf="reviews.length === 0">Nothing here yet.</p>
     <div *ngFor="let review of reviews">

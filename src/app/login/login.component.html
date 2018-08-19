@@ -1,6 +1,6 @@
-<div class="container">
+<div class="container" id="wbdv-page">
   <div class="mb-4">
-    	<h1>Sign In</h1>
+    	<h1 class="display-4">Sign In</h1>
   </div>
   <div class="alert alert-warning"
        *ngIf="err">
@@ -33,7 +33,7 @@
         </div>
     </div>
     <div class="">
-      <button id="loginBtn" 
+      <button id="loginBtn"
               class="btn btn-lg btn-primary btn-block"
               (click)="login(username, password)">
           Login
@@ -44,4 +44,3 @@
     </div>
   </div>
 </div>
-
