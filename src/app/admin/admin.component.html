@@ -1,4 +1,4 @@
-<div class="container border rounded px-3" id="wbdv-page">
+<div class="container" id="wbdv-page">
   <h1 class="display-4">Admin Table</h1>
   <div class="table-responsive">
     <table id="admin_table" class="table">
@@ -52,8 +52,9 @@
   <ul class="list-group">
     <li class="list-group-item"
     *ngFor="let user of users">
-    <div class="row" id="users-table">
+    <div class="row">
       <h5 class="col">Username: {{user.username}}</h5>
+      <h5 class="col">Email: {{user.email}}</h5>
       <h5 class="col">Role: {{user.role}}</h5>
       <div class="col-xs-1">
         <button class="btn btn-danger btn-block float-right"
