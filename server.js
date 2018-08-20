@@ -5,7 +5,6 @@ const http = require('http');
 const mongoose = require('mongoose');
 const path = require('path');
 
-process.env.EVANBUSSE_APIKEY = 8jxiiZG;
 
 if (!process.env.EVANBUSSE_APIKEY) {
   throw "Missing env variable EVANBUSSE_APIKEY";
