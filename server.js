@@ -5,13 +5,15 @@ const http = require('http');
 const mongoose = require('mongoose');
 const path = require('path');
 
+process.env.EVANBUSSE_APIKEY = 8jxiiZG;
+
 if (!process.env.EVANBUSSE_APIKEY) {
   throw "Missing env variable EVANBUSSE_APIKEY";
 }
 const EVANBUSSE_APIKEY = process.env.EVANBUSSE_APIKEY;
 const url = "http://strainapi.evanbusse.com/" + EVANBUSSE_APIKEY;
 
-mongoose.connect(process.env.MONGODB_URI 
+mongoose.connect(process.env.MONGODB_URI
               || 'mongodb://localhost/webdev_team_project', function(err){
   if (err) {
     throw err;
@@ -86,7 +88,7 @@ require('./nodesrc/service/follow.service')(app);
 // Serve only the static files form the dist directory
 app.use(express.static(__dirname + '/dist/webdev-team-project-angular'));
 
-app.get('/*', function(req,res) {  
+app.get('/*', function(req,res) {
   res.sendFile(path.join(__dirname+'/dist/webdev-team-project-angular/index.html'));
 });
 
